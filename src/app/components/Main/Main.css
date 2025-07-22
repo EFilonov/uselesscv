@@ -1,0 +1,97 @@
+.header{
+  margin-top: 40px;
+  
+}
+
+.container{
+  background: var(--background);
+  padding: 30px;
+  box-shadow: 0 2px 4px var(--shadow); 
+}
+
+.titleName{
+  color: var(--primary);
+  font-size: var(--big);
+  width: 250px;
+  margin: 0;
+
+}
+
+.titleProffile{
+  color: var(--secondary);
+  font-size: var(--small);
+  
+}
+.divider{
+  margin: 30px 0 0 0;
+  border-bottom: 4px solid var(--divider);
+}
+.content{
+  display: grid;
+  grid-template-columns: minmax(100px, 320px) auto;
+}
+.mainContent{
+  border-left: 4px solid var(--divider);
+  padding: 0 30px  0 15px;
+}
+
+.regularText.profileText{
+  margin-top: 30px;
+  color: var(--secondary);
+  font-size: var(--small);
+}
+
+.regularText{
+    margin-top: 10px;
+    color: var(--secondary);
+    font-size: var(--small);
+}
+.educationBlock{
+    display: grid;
+    grid-template-columns: minmax(140px, 400px) ;
+}
+
+.footer{
+  margin-bottom: 30px;
+  
+}
+
+@media (max-width: 520px) {
+  .container{
+    padding: 10px;
+  }
+  .mainContent{
+  
+  padding: 0 10px  0 5px;
+}
+}
+
+@media print {
+  .header{
+    display: none !important;
+    margin-top: 0;
+  }
+ 
+  .container{
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+  body{
+    background: #FFF !important;
+  }
+  .divider{
+    border-bottom: 4px solid #a4a4a4a4 !important;
+  }
+  .mainContent{
+    border-left: 4px solid #a4a4a4a4 !important;
+    padding: 0 0 0 15px !important;
+  }
+
+  .content{
+    grid-template-columns:280px auto;
+  }
+  a {
+    color: var(--primary) !important;
+    text-decoration: none !important;
+  }
+}
