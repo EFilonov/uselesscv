@@ -1,9 +1,6 @@
-.header{
-  margin-top: 40px;
-  
-}
-
 .container{
+  max-width: 1000px;
+  margin: 80px auto 0 auto;
   background: var(--background);
   padding: 30px;
   box-shadow: 0 2px 4px var(--shadow); 
@@ -12,9 +9,23 @@
 .titleName{
   color: var(--primary);
   font-size: var(--big);
-  width: 250px;
+  /* width: 250px; */
   margin: 0;
+  z-index: 2;
+}
 
+.titleName.invert {
+  color: #fff; /* белый текст */
+  /* background: #000; чёрный фон, как у хедера */
+  z-index: 10; /* поверх хедера */
+  position: relative;
+  transition: color 0.2s, background 0.2s;
+}
+.invert.visible {
+  position: sticky;
+  top: 10px;
+  opacity: 0;
+  
 }
 
 .titleProffile{
@@ -51,10 +62,7 @@
     grid-template-columns: minmax(140px, 400px) ;
 }
 
-.footer{
-  margin-bottom: 30px;
-  
-}
+
 
 @media (max-width: 520px) {
   .container{
