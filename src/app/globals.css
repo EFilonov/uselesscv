@@ -1,6 +1,6 @@
 :root {
 
-  max-width: 960px;
+  /* max-width: 960px; */
   margin: 0 auto;
   padding: 0;
   --background: #FFFFFF;
@@ -9,9 +9,14 @@
   --primary: #030303;
   --secondary: #443f3f;
   --divider: #e0e0e0;
-  --big: 2rem;
+  --big: 38px;
   --medium: 1.5rem;
   --small: 1rem;
+  --footer-text-color: #DFDFDFDF;
+  
+}
+html {
+  scroll-behavior: smooth;
 }
 
 
@@ -52,4 +57,5 @@ body {
     --small: 0.9rem;
   }
 }
- 
+
+
