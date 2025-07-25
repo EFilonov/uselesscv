@@ -1,17 +1,27 @@
+import { Button } from "../Button/Button";
+import router from "next/router";
+
 import "./Header.css";
 
-export const Header = ({animate}) => {
+export const Header = ({animate, handleDownload}) => {
+  
   return (
     <header className="header">
-      <h1 className={`headerContent${animate ? " animate" : ""}`}>
-        LANDON HARPER
-      </h1>
-      <button className="button">
-        <div className="blob1"></div>
-        <div className="blob2"></div>
-        <div className="inner">Realism</div>
-      </button>
-
+      
+      <div className="headerWrapper">
+        {/* <div className="headerName"> */}
+          <h1 className={`headerContent${animate ? " animate" : " hidden"}`}>
+            LANDON HARPER
+          </h1>
+        {/* </div> */}
+      <div className="headerBtns">
+        <Button 
+          onClick={()=>handleDownload()}
+          >PDF</Button >
+        <Button>Print</Button>
+        <Button>Login</Button>
+      </div>  
+      </div>
     </header>
   );
 }
