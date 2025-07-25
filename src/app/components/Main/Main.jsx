@@ -5,7 +5,7 @@ import { data } from '../../constants/constants';
 import { HistoryBlock } from '../HistoryBlock/HistoryBlock';
 import { Footer } from '../Footer/Footer';
 import {Header} from '../Header/Header';
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState,  React, useCallback} from "react";
 
 import './Main.css';
 
@@ -13,6 +13,16 @@ export const Main = () => {
     const [invert, setInvert] = useState(false);
     const[isVisibleName, setIsVisibleName] = useState(false);
     const titleRef = useRef(null);
+    const contentRef = useRef();
+    const {
+        name,
+        occupation,
+        profile, 
+        ehistory,
+        education,
+        phone,
+        email,
+        } = data;
 
     useEffect(() => {
       const headerHeight = 60; // px
@@ -27,25 +37,30 @@ export const Main = () => {
       window.addEventListener("scroll", handleScroll);
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
-    }, [isVisibleName]);
-    useEffect(() => {
-        console.log(isVisibleName)
-    }, [isVisibleName]);
-
-    const {
-        name,
-        occupation,
-        profile, 
-        ehistory,
-        education,
-        phone,
-        email,
-        } = data;
+    }, []);
+  
+    const handleDownload = useCallback(async () => {
+      
+      const html2pdf = (await import('html2pdf.js')).default;
+      const element = contentRef.current;
+      const options = {
+        margin: [5, 8, 5, 5],
+        filename: 'CV.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      setInvert(false);
+      html2pdf().set(options).from(element).save();
+      
+    }
+    ,[]);
+    
   return (
     <>
-      <Header animate={isVisibleName}/>
+      <Header animate={isVisibleName} handleDownload={handleDownload}/>
       <div className="container">
-        <main className="main">
+        <main className="main" ref={contentRef}>
           <h1
             className={`titleName${invert ? " invert" : ""}${isVisibleName ? " visible" : ""}`}
             ref={titleRef}

@@ -7,17 +7,16 @@
 }
 
 .titleName{
+  width: fit-content;
   color: var(--primary);
   font-size: var(--big);
-  /* width: 250px; */
   margin: 0;
   z-index: 2;
 }
 
 .titleName.invert {
-  color: #fff; /* белый текст */
-  /* background: #000; чёрный фон, как у хедера */
-  z-index: 10; /* поверх хедера */
+  color: #fff; 
+  z-index: 10; 
   position: relative;
   transition: color 0.2s, background 0.2s;
 }
