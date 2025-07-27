@@ -1,0 +1,54 @@
+.hamburger {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: var(--foreground);
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    transition: 0.3s;
+}
+
+.hamburger span:nth-child(1) {
+    top: 4px;
+}
+
+.hamburger span:nth-child(2) {
+    top: 12px;
+}
+
+.hamburger span:nth-child(3) {
+    top: 20px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.hamburger:hover {
+    user-select: none;
+    filter: hue-rotate(350deg) brightness(97%);
+    transition: filter 0.2s ease-in-out;
+}

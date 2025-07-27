@@ -37,14 +37,11 @@
 
 .headerBtns{
   grid-area: buttons;
-  /* height: 80px; */
   justify-self: end;
-  width: 340px;
   align-self: center;
-  display: grid;
-  align-self: center;
-  grid-template-columns: repeat(3, auto);
+  
 }
+
 
 .animate {
   animation: fontSizeShrink 0.5s forwards;
@@ -56,5 +53,7 @@
 }
 
 @media (max-width: 740px) {
-  
+  .headerHamburger {
+    display: block;
+  }
 }
