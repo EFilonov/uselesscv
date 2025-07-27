@@ -1,27 +1,28 @@
 import { Button } from "../Button/Button";
+import { Hamburger } from "../Hamburger/Hamburger";
+import { UserMenu } from "../UserMenu/UserMenu";
 import router from "next/router";
+import { SessionProvider } from "next-auth/react";
 
 import "./Header.css";
 
-export const Header = ({animate, handleDownload}) => {
-  
+
+
+export const Header = ({animate, handleDownload, handlePrint}) => {
+  console.log(process.env.OAUTH_GOOGLE_CLIENT_ID, process.env.OAUTH_GOOGLE_CLIENT_SECRET);
   return (
     <header className="header">
       
       <div className="headerWrapper">
-        {/* <div className="headerName"> */}
-          <h1 className={`headerContent${animate ? " animate" : " hidden"}`}>
+        <h1 className={`headerContent${animate ? " animate" : " hidden"}`}>
             LANDON HARPER
-          </h1>
-        {/* </div> */}
+        </h1>
       <div className="headerBtns">
-        <Button 
-          onClick={()=>handleDownload()}
-          >PDF</Button >
-        <Button>Print</Button>
-        <Button>Login</Button>
-      </div>  
+        <SessionProvider>
+            <UserMenu handleDownload={handleDownload} handlePrint={handlePrint}/>
+        </SessionProvider>
       </div>
+     </div>
     </header>
   );
-}
+}   

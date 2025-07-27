@@ -14,6 +14,7 @@ export const Main = () => {
     const[isVisibleName, setIsVisibleName] = useState(false);
     const titleRef = useRef(null);
     const contentRef = useRef();
+    
     const {
         name,
         occupation,
@@ -38,9 +39,8 @@ export const Main = () => {
       handleScroll();
       return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-  
+    
     const handleDownload = useCallback(async () => {
-      
       const html2pdf = (await import('html2pdf.js')).default;
       const element = contentRef.current;
       const options = {
@@ -52,13 +52,16 @@ export const Main = () => {
       };
       setInvert(false);
       html2pdf().set(options).from(element).save();
-      
     }
     ,[]);
+
+    const handlePrint = useCallback(() => {
+      window.print();  
+    }, []);
     
   return (
     <>
-      <Header animate={isVisibleName} handleDownload={handleDownload}/>
+      <Header animate={isVisibleName} handleDownload={handleDownload} handlePrint={handlePrint}/>
       <div className="container">
         <main className="main" ref={contentRef}>
           <h1
