@@ -1,15 +1,14 @@
-import { Button } from "../Button/Button";
-import { Hamburger } from "../Hamburger/Hamburger";
+import React from "react";
 import { UserMenu } from "../UserMenu/UserMenu";
-import router from "next/router";
 import { SessionProvider } from "next-auth/react";
+import { HeaderProps } from "./Header.props.interface";
 
 import "./Header.css";
 
 
 
-export const Header = ({animate, handleDownload, handlePrint}) => {
-  console.log(process.env.OAUTH_GOOGLE_CLIENT_ID, process.env.OAUTH_GOOGLE_CLIENT_SECRET);
+export const Header: React.FC<HeaderProps> = ({animate, handleDownload, handlePrint}) => {
+  
   return (
     <header className="header">
       
@@ -25,4 +24,4 @@ export const Header = ({animate, handleDownload, handlePrint}) => {
      </div>
     </header>
   );
-}   
+};   

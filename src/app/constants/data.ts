@@ -1,4 +1,6 @@
-export const data = {
+import { clientData } from "../interfaces/clientData.interface";
+
+export const data: clientData = {
     name: "LANDON HARPER",
     occupation: "Programmer",
     address: "2435 Lincoln Avenue San Diego, CA 92104 United States",
@@ -42,4 +44,4 @@ export const data = {
     education: {
             school: "B.S. in Computer Science University of California, San Diego", 
             years: "2016 - 2020"},
-}
+};

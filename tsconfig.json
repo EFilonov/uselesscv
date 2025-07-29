@@ -21,6 +21,10 @@
                 "name": "next"
             }
         ],
+        "typeRoots": [
+            "./src/app/types",
+            "./node_modules/@types"
+        ],
         "paths": {
             "@/*": [
                 "./src/*"
@@ -33,7 +37,7 @@
         "**/*.ts",
         "**/*.tsx",
         ".next/types/**/*.ts",
-        "src/app/components/Hamburger/Hamburger.jsx"
+        "src/app/types/**/*.d.ts"
     ],
     "exclude": [
         "node_modules"
