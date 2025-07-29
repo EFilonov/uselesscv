@@ -1,29 +1,23 @@
 'use client';
-import {Aside} from './../Aside/Aside';
+import {Aside} from '../Aside/Aside';
 import { HwithLine } from '../HWithLine/HwithLine';
-import { data } from '../../constants/constants';
+import { data } from '../../constants/data';
 import { HistoryBlock } from '../HistoryBlock/HistoryBlock';
 import { Footer } from '../Footer/Footer';
-import {Header} from '../Header/Header';
-import { useRef, useEffect, useState,  React, useCallback} from "react";
+import { Header } from '../Header/Header';
+import { useRef, useEffect, useState, useCallback } from "react";
+
 
 import './Main.css';
 
 export const Main = () => {
     const [invert, setInvert] = useState(false);
     const[isVisibleName, setIsVisibleName] = useState(false);
-    const titleRef = useRef(null);
-    const contentRef = useRef();
+    const titleRef = useRef<HTMLHeadingElement | null>(null);
+    const contentRef = useRef<HTMLDivElement | null>(null);
     
     const {
-        name,
-        occupation,
-        profile, 
-        ehistory,
-        education,
-        phone,
-        email,
-        } = data;
+        name, occupation, profile, education} = data;
 
     useEffect(() => {
       const headerHeight = 60; // px
@@ -74,7 +68,7 @@ export const Main = () => {
           <div className="divider"></div>
         <div className="content">
           <div className="aside">
-            <Aside data={data}/>
+            <Aside/>
           </div>
            <div className="mainContent">
             <HwithLine line={true}>
@@ -88,34 +82,25 @@ export const Main = () => {
             </HwithLine>
 
             <article className="article">
-                {ehistory.map((item, index) =>{
-                    return (
-                        <HistoryBlock key={index}
-                            title={item.title}
-                            company={item.company}
-                            years={item.date}
-                            achivments={item.achivments}
-                        />
-                    )
-                })}
-            <div className="divider"></div>
-            <div className="educationBlock">
-              <HwithLine line={true}>
-                EDUCATION
-              </HwithLine>
-              <HwithLine line={false}>
-                {education.school}            
-              </HwithLine>
-            </div>
-            <div className="regularText">
-              {education.years}
-            </div>
+              <HistoryBlock />
+              <div className="divider"></div>
+              <div className="educationBlock">
+                <HwithLine line={true}>
+                  EDUCATION
+                </HwithLine>
+                <HwithLine line={false}>
+                  {education.school}            
+                </HwithLine>
+              </div>
+              <div className="regularText">
+                {education.years}
+              </div>
             </article>
           </div>
         </div>
         </main>
       </div>
-      <Footer phone={phone} email={email}/>
+      <Footer/>
     </>  
     );
-}
+};

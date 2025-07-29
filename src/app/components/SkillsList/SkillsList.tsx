@@ -1,9 +1,10 @@
+import React from "react";
 import "./SkillsList.css";
 import { SkillWithBar } from "../SkillWithBar/SkillWithBar";
+import { data } from "../../constants/data"; 
 
-
-export const SkillsList = ({skills}) => {
-  
+export const SkillsList: React.FC = () => {
+  const { skills } = data;
   return (
     <div className="skillsList">
       {skills.map((skill, index) => {
@@ -15,4 +16,4 @@ export const SkillsList = ({skills}) => {
       })}
     </div>
   );
-}
+};

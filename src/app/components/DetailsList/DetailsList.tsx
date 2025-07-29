@@ -1,9 +1,10 @@
-
+import React from "react";
 import { HwithLine } from "../HWithLine/HwithLine";
+import { data } from "../../constants/data";
 
 import "./DetailsList.css";
 
-export const DetailsList = ({data}) => {
+export const DetailsList: React.FC = () => {
   
   const { address, phone, email, nationality} = data;
   return (
@@ -34,4 +35,4 @@ export const DetailsList = ({data}) => {
       </div>
     </div>
   );
-}
+};

@@ -8,22 +8,28 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import PrintIcon from '@mui/icons-material/Print';
 import GoogleIcon from '@mui/icons-material/Google';
-import { useSession } from 'next-auth/react';
-import { signIn, signOut } from 'next-auth/react';
-import Image from 'next/image';
+import { useSession , signIn, signOut } from 'next-auth/react';
 
-export const  UserMenu = ({handleDownload, handlePrint}) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { UserMenuProps } from './UserMenu.props.interface';
+
+
+export const UserMenu: React.FC<UserMenuProps> = ({ handleDownload, handlePrint }) => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+  
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  
+  const router = useRouter();
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -31,28 +37,31 @@ export const  UserMenu = ({handleDownload, handlePrint}) => {
   const onPrint = () => {
     handlePrint();
     handleClose();
-  }
+  };
   const onDownload = () => {
     handleDownload();
     handleClose();
-  }
+  };
 
   const handleLogout = () => {
-    signOut();
+    signOut({callbackUrl: '/'});
     handleClose();
-  }
+  };
   const handleLogin = () => {
     signIn();
     handleClose();
-  }
+  };
+  const handleProfile = () => {
+    router.push('/profile');
+    handleClose();
+  };
 
-  const session = useSession()
-  
+  const session = useSession();
   
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title="User Menu">
+        <Tooltip title={session.status === 'authenticated' ? `Signed in as ${session.data?.user?.email}` : "Sign in to get more features"}>
           <IconButton
             onClick={handleClick}
             size="small"
@@ -65,15 +74,14 @@ export const  UserMenu = ({handleDownload, handlePrint}) => {
               (session.status === 'loading') ? 
                 <Avatar sx={{ width: 32, height: 32 }}/>
                   :
-              (session.status === 'authenticated') ?
-                <Avatar sx={{ width: 32, height: 32 }} src={session.data?.user?.image}/> 
+              (session.status === 'authenticated' && session.data?.user?.image) ?
+                <Image src={session.data.user.image} width={32} height={32} style={{borderRadius : "50%"}} alt={`Logo ${session.data.user.name}`} /> 
                   :
-                <Avatar sx={{ width: 32, height: 32 }}/>
+                <Avatar sx={{ width: 32, height: 32 }}>{session.data?.user?.name?.split(" ")[0] || "U"}</Avatar>
             }
           </IconButton>
-          
         </Tooltip>
-      </Box>
+      </Box> 
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -112,24 +120,27 @@ export const  UserMenu = ({handleDownload, handlePrint}) => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
+        {session.status === 'authenticated' && 
         <MenuItem onClick={onDownload}>
           <PictureAsPdfIcon sx={{paddingRight :'10px'}}/>  Save to PDF
-        </MenuItem>
-        <MenuItem onClick={onPrint}>
-          <PrintIcon sx={{paddingRight :'10px'}}/> Print
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleClose}>
+        </MenuItem>}
+        {session.status === 'authenticated' &&
+          <MenuItem onClick={onPrint}>
+              <PrintIcon sx={{paddingRight :'10px'}}/> Print
+          </MenuItem> 
+        }
+        {session.status === 'authenticated' && <Divider />}
+        {/* <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
           Another account
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
+        </MenuItem> */}
+        <MenuItem onClick={handleProfile}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Settings
+          Profile
         </MenuItem>
 
         {session.status === 'authenticated' ? 
@@ -139,7 +150,7 @@ export const  UserMenu = ({handleDownload, handlePrint}) => {
             </ListItemIcon>
           Logout
           </MenuItem>
-      : 
+        : 
           <MenuItem onClick={handleLogin}>
             <ListItemIcon>
               <GoogleIcon fontSize="small" />
@@ -150,4 +161,4 @@ export const  UserMenu = ({handleDownload, handlePrint}) => {
       </Menu>
     </React.Fragment>
   );
-}
+};

@@ -1,9 +1,16 @@
-import Google from "next-auth/providers/google"
+import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
+
 
 export const authConfig = {
     providers: [
-     Google(),
+     Google({
+        authorization: {
+        params: {
+          scope: "openid email profile https://www.googleapis.com/auth/drive"
+        }
+      }
+     }),
      Credentials({
         credentials: {
             email: {
@@ -19,4 +26,7 @@ export const authConfig = {
         },
     })
     ],
-}
+    // pages: { //customize sign-in page
+    //   signIn: "/auth/signin"
+    // }
+};
