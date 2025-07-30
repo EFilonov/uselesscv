@@ -77,7 +77,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ handleDownload, handlePrint 
               (session.status === 'authenticated' && session.data?.user?.image) ?
                 <Image src={session.data.user.image} width={32} height={32} style={{borderRadius : "50%"}} alt={`Logo ${session.data.user.name}`} /> 
                   :
-                <Avatar sx={{ width: 32, height: 32 }}>{session.data?.user?.name?.split(" ")[0] || "U"}</Avatar>
+                <Avatar sx={{ width: 32, height: 32 }}>{session.data?.user?.name?.charAt(0) || "U"}</Avatar>
             }
           </IconButton>
         </Tooltip>
