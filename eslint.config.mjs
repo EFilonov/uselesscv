@@ -1,6 +1,6 @@
 import pluginJs from '@eslint/js';
 import nextPlugin from '@next/eslint-plugin-next';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import prettierPlugin from 'eslint-plugin-prettier'; // ← добавить
 import importPlugin from 'eslint-plugin-import';
 import pluginPromise from 'eslint-plugin-promise';
 import pluginReact from 'eslint-plugin-react';
@@ -31,11 +31,16 @@ export default [
   pluginPromise.configs['flat/recommended'],
   pluginReact.configs.flat.recommended,
   pluginReact.configs.flat['jsx-runtime'],
-  eslintConfigPrettier,
+  
+  // Временно закомментируйте эту строку
+  // eslintConfigPrettier,
 
   {
+    plugins: {
+      prettier: prettierPlugin,
+    },
     rules: {
-      // Semicolon
+      // Принудительно включить правило ПОСЛЕ prettier
       'semi': ['warn', 'always'],
 
       // React rules
@@ -53,14 +58,12 @@ export default [
       // Import rules
       'import/no-unresolved': 'off',
       'import/no-named-as-default': 'off',
-
-      // Style
       'newline-before-return': 'off',
     },
   },
 
+  // Next.js правила
   {
-    // Next.js community workaround
     plugins: {
       '@next/next': nextPlugin,
     },

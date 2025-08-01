@@ -6,12 +6,12 @@
     min-height: 100vh;
 }
 
-.loginForm{
+.loginForm {
     align-self: center;
     justify-self: center;
 }
 
-.githubBtn{
+.githubBtn {
     margin-top: 20px;
 }
 .loginTitle {
@@ -29,32 +29,41 @@ h4 {
 
 .MuiInput-underline:before,
 .MuiInput-underline:after {
-    border-bottom-color: var(--primary) !important;
+    border-bottom-color: var(--primary);
 }
 .forgotPassword {
     margin-top: 10px;
     color: var(--primary);
     text-decoration: none;
     display: grid;
-   
 }
 
-.register{
+.register {
     margin-top: 10px;
 }
 
-.forgotLink{
+.forgotLink {
     color: var(--primary);
     text-decoration: none;
     justify-self: flex-end;
     font-size: 0.9rem;
 }
-.forgotLink:hover{
+.forgotLink:hover {
     color: var(--primary);
     text-decoration: underline;
 }
 
-.registerLink{
+.registerLink {
     color: var(--primary);
-    
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    transition: background-color 9999s ease-in-out 0s;
 }

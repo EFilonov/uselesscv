@@ -1,10 +1,16 @@
+import { redirect } from 'next/navigation';
 
-import {LoginForm} from "@/app/components/LoginForm/LoginForm"
+import { auth } from '@/app/auth';
+import { LoginForm } from '@/app/components/LoginForm/LoginForm';
 
-const SigninPage: React.FC = () => {
-    
-    return (
-      <LoginForm />  
-    );
-}
+const SigninPage = async () => {
+    const session = await auth();
+
+    if (session?.user) {
+        redirect('/');
+    }
+
+    return <LoginForm />;
+};
+
 export default SigninPage;

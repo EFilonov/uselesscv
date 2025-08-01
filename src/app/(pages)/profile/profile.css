@@ -1,14 +1,14 @@
 .profile-page {
-  height: 100vh;
-  overflow: hidden;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .profileContainer {
-  max-width: 1000px;
-  margin: 80px auto 0 auto;
-  background: var(--background);
-  box-shadow: 0 2px 4px var(--shadow);
-  padding: 30px; 
+    max-width: 1000px;
+    margin: 80px auto 0 auto;
+    background: var(--background);
+    box-shadow: 0 2px 4px var(--shadow);
+    padding: 30px;
 }
 
 .profile-info {

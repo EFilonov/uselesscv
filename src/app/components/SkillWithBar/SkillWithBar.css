@@ -1,9 +1,9 @@
-.skillName{
+.skillName {
     color: var(--secondary);
-    font-size: var(--small);;
+    font-size: var(--small);
     margin-top: 10px;
 }
-.bar{
+.bar {
     display: block;
     margin-top: 5px;
     /* height: 2px; */
@@ -11,5 +11,4 @@
     /* background: var(--primary); */
 
     border-bottom: 3px solid var(--primary);
-    
 }
