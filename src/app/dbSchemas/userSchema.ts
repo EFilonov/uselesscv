@@ -1,16 +1,15 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const usersSchema = new mongoose.Schema(
-{
-  name: String,
-  email: String,
-  password: String,
-  
-  }, 
-{ 
-    strict: true,           
-    collection: "users"       
+    {
+        name: String,
+        email: String,
+        password: String
+    },
+    {
+        strict: true,
+        collection: 'users'
     }
 );
 
-export const Users = mongoose.models.Users || mongoose.model("Users", usersSchema);
+export const Users = mongoose.models.Users || mongoose.model('Users', usersSchema);

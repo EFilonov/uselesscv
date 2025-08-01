@@ -3,15 +3,15 @@
     margin-bottom: 0;
     font-size: var(--small);
 }
-.line{
+.line {
     display: block;
-    height: 2px; 
+    height: 2px;
     width: 20px;
-    border-bottom: 3px solid var(--primary)
+    border-bottom: 3px solid var(--primary);
 }
 
 @media print {
-    .line{
-        border-bottom: 2px solid var(--primary)
+    .line {
+        border-bottom: 2px solid var(--primary);
     }
 }

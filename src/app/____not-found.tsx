@@ -1,13 +1,15 @@
-"use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+'use client';
+
+import { useEffect } from 'react';
+
+import { useRouter } from 'next/navigation';
 
 export default function NotFound() {
-  const router = useRouter();
+    const router = useRouter();
 
-  useEffect(() => {
-    router.replace("/api/auth/signin");
-  }, [router]);
+    useEffect(() => {
+        router.replace('/api/auth/signin');
+    }, [router]);
 
-  return <div>Redirecting...</div>;
+    return <div>Redirecting...</div>;
 }

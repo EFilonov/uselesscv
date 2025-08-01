@@ -1,59 +1,55 @@
 @keyframes fontSizeShrink {
-  from { 
-    font-size: 2rem;
-    margin-top: 10px; 
-  }
-  to {
-     font-size: 1.5rem;
-     margin-top: 16px;
-  }
+    from {
+        font-size: 2rem;
+        margin-top: 10px;
+    }
+    to {
+        font-size: 1.5rem;
+        margin-top: 16px;
+    }
 }
 
-.header{
-  width: 100%;
-  height: 60px;
-  background-color: black;
-  position: fixed;
-  top: 0;
-  z-index: 0; 
+.header {
+    width: 100%;
+    height: 60px;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    z-index: 0;
 }
 .headerWrapper {
-  padding: 0 20px;
-  margin: 0 auto;
-  max-width: 1000px;
-  height: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-areas: 
-    "text buttons";
-  
+    padding: 0 20px;
+    margin: 0 auto;
+    max-width: 1000px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'text buttons';
 }
 
-.headerContent{
-  margin-top: 10px;
-  justify-self: start;
-  grid-area: text;
+.headerContent {
+    margin-top: 10px;
+    justify-self: start;
+    grid-area: text;
 }
 
-.headerBtns{
-  grid-area: buttons;
-  justify-self: end;
-  align-self: center;
-  
+.headerBtns {
+    grid-area: buttons;
+    justify-self: end;
+    align-self: center;
 }
-
 
 .animate {
-  animation: fontSizeShrink 0.5s forwards;
-  color: white;
+    animation: fontSizeShrink 0.5s forwards;
+    color: white;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 @media (max-width: 740px) {
-  .headerHamburger {
-    display: block;
-  }
+    .headerHamburger {
+        display: block;
+    }
 }

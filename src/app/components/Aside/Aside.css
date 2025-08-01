@@ -1,15 +1,14 @@
-.aside{
-  padding-right: 15px;
+.aside {
+    padding-right: 15px;
 }
 
 .skillsWrapper,
-.langsWrapper{
- margin-top:30px;
+.langsWrapper {
+    margin-top: 30px;
 }
 
 @media (max-width: 520px) {
-  .aside{
-  padding-right: 5px;
+    .aside {
+        padding-right: 5px;
+    }
 }
-}
-

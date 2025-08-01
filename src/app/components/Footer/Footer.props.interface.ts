@@ -1,5 +1,5 @@
-import { clientData } from "../../interfaces/clientData.interface";
+import { clientData } from '../../interfaces/clientData.interface';
 
 export interface FooterProps {
-  data: clientData;
+    data: clientData;
 }

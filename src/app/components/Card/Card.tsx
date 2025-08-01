@@ -1,14 +1,13 @@
-import {CardProps} from "./Card.props";
-import {JSX} from "react";
-import cn from 'classnames';
-import style from './Card.module.css';
+import { JSX } from 'react';
 
-export const Card = ({ className, color = 'white', children, ...props }: CardProps): JSX.Element  => {
+import style from './Card.module.css';
+import { CardProps } from './Card.props';
+import cn from 'classnames';
+
+export const Card = ({ className, color = 'white', children, ...props }: CardProps): JSX.Element => {
     return (
-        <div className={cn(className, style.card, {[style.lightBlue]: color === 'lightBlue' })} {...props} >
+        <div className={cn(className, style.card, { [style.lightBlue]: color === 'lightBlue' })} {...props}>
             {children}
-            
-        </div>    
+        </div>
     );
 };
-

@@ -6,7 +6,7 @@
 //       email: string;
 //       name: string;
 //     }  & DefaultSession["user"];
-//   } 
+//   }
 
 //   interface User {
 //     id: string;
