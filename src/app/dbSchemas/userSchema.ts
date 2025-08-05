@@ -4,7 +4,9 @@ const usersSchema = new mongoose.Schema(
     {
         name: String,
         email: String,
-        password: String
+        password: String,
+        resetPasswordToken: String,
+        resetPasswordExpires: Date
     },
     {
         strict: true,

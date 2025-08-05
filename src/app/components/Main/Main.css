@@ -38,7 +38,7 @@
 }
 .content {
     display: grid;
-    grid-template-columns: minmax(100px, 320px) auto;
+    grid-template-columns: minmax(100px, 300px) minmax(50%, auto);
 }
 .mainContent {
     border-left: 4px solid var(--divider);
@@ -71,7 +71,8 @@
 }
 
 @media print {
-    .header {
+    .header,
+    .footer {
         display: none !important;
         margin-top: 0;
     }
@@ -79,10 +80,22 @@
     .container {
         box-shadow: none !important;
         padding: 0 !important;
+        margin-top: 10px;
     }
+
+    .invert.visible {
+        position: static;
+        opacity: 1;
+        color: var(--primary) !important;
+    }
+
     body {
         background: #fff !important;
     }
+    .content {
+        grid-template-columns: 200px auto !important;
+    }
+
     .divider {
         border-bottom: 4px solid #a4a4a4a4 !important;
     }

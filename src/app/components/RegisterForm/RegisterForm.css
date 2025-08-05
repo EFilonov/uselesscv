@@ -1,0 +1,55 @@
+.formWrapper {
+    display: grid;
+    align-self: center;
+    justify-self: center;
+    max-width: 400px;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.loginForm {
+    max-width: 360px;
+    width: calc(100vw - 32px);
+    align-self: center;
+    justify-self: center;
+}
+
+.loginTitle {
+    margin: 0;
+}
+.passSwitch {
+    justify-self: flex-end;
+    margin-top: 10px;
+}
+h4 {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.MuiFormLabel-root.Mui-error.Mui-focused {
+    color: red;
+}
+
+.MuiInput-underline:before,
+.MuiInput-underline:after {
+    border-bottom-color: var(--secondary);
+}
+
+.register {
+    margin-top: 10px;
+}
+
+.registerLink {
+    color: var(--primary);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
