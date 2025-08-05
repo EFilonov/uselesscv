@@ -118,14 +118,16 @@ export const ForgotForm = () => {
                             Click here
                         </Link>
                     </div>
-                    {status && (
-                        <Alert
-                            severity={status.includes('Reset email') ? 'success' : 'error'}
-                            sx={{ mt: 2, mb: 2 }}
-                            onClose={onAlertClose}>
-                            {status}
-                        </Alert>
-                    )}
+                    {status &&
+                        (console.log(status),
+                        (
+                            <Alert
+                                severity={status.includes('Reset email') ? 'success' : 'error'}
+                                sx={{ mt: 2, mb: 2 }}
+                                onClose={onAlertClose}>
+                                {status}
+                            </Alert>
+                        ))}
                 </form>
             </Card>
         </div>

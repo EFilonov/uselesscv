@@ -157,7 +157,7 @@ export const ResetPasswordForm = () => {
                     </div>
                     {messageToUser && (
                         <Alert
-                            severity={messageToUser.includes('Success') ? 'success' : 'error'}
+                            severity={messageToUser.includes('Password changed') ? 'success' : 'error'}
                             sx={{ mt: 2, mb: 2 }}
                             onClose={onAlertClose}>
                             {messageToUser}
