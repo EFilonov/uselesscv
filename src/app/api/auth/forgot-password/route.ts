@@ -11,6 +11,11 @@ export const POST = async (request: Request) => {
     try {
         const { email, token: recaptchaToken } = await request.json();
         const result = await validateRecaptcha(recaptchaToken, process.env.RECAPTCHA_SECRET_KEY!);
+        console.log('Recaptcha token from submit form(site key):', recaptchaToken);
+        console.log('Recaptcha secret key:', process.env.RECAPTCHA_SECRET_KEY);
+        console.log('Recaptcha result.success:', result.success);
+        console.log('Recaptcha validation result:', result);
+
         if (!result.success) {
             return NextResponse.json({ error: 'Recaptcha validation failed' }, { status: 400 });
         }
