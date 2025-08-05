@@ -105,7 +105,7 @@ export const LoginForm = () => {
         setTimeout(() => {
             // passwordRef.current?.blur();
         }, 0);
-        setFormKey((prev) => prev + 1); // принудительный перерендер формы
+        setFormKey((prev) => prev + 1); // rerender form to reset state to reset FormControl
     };
     return (
         <div className='formWrapper'>
@@ -148,7 +148,7 @@ export const LoginForm = () => {
                     <Divider sx={{ mt: 4 }}>or</Divider>
                     <h4>Enter your email and password below</h4>
                     <div className='forgotPassword'>
-                        <a className='forgotLink' href='/register'>
+                        <a className='forgotLink' href='/auth/forgot-password'>
                             Forgot your password?
                         </a>
                     </div>
@@ -232,8 +232,8 @@ export const LoginForm = () => {
                         </Button>
                     </div>
                     <div className='register'>
-                        <span>{"Don't have an account?"}</span>
-                        <a className='registerLink' href='/register'>
+                        <span>{"Don't have an account?  "}</span>
+                        <a className='registerLink' href='/auth/register'>
                             Register
                         </a>
                     </div>
