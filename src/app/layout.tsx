@@ -20,7 +20,7 @@ export const metadata: Metadata = {
                 alt: 'useless-cv Open Graph Image'
             }
         ],
-        url: `https://${process.env.NEXT_PUBLIC_URL}.vercel.app/`, // Replace with actual URL
+        url: process.env.NEXT_PUBLIC_URL, // Replace with actual URL
         type: 'website',
         siteName: 'UselessCV',
         locale: 'en_US'
