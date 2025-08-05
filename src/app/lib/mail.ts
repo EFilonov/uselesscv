@@ -6,7 +6,7 @@ const OAuth2 = google.auth.OAuth2;
 const oauth2Client = new OAuth2(
     process.env.AUTH_GOOGLE_ID!,
     process.env.AUTH_GOOGLE_SECRET!,
-    `${process.env.NEXT_PUBLIC_URL}/oauth2callback` // или свой редирект, если получал токен через сайт
+    `${process.env.NEXT_PUBLIC_URL}/api/oauth2callback`
 );
 
 oauth2Client.setCredentials({
@@ -21,9 +21,9 @@ export async function sendPasswordResetEmail(to: string, token: string) {
         auth: {
             type: 'OAuth2',
             user: process.env.EMAIL_FROM!,
-            clientId: process.env.EMAIL_CLIENT_ID!,
-            clientSecret: process.env.EMAIL_CLIENT_SECRET!,
-            refreshToken: process.env.EMAIL_REFRESH_TOKEN!,
+            clientId: process.env.AUTH_GOOGLE_ID!,
+            clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+            refreshToken: process.env.MAIL_REFRESH_TOKEN!,
             accessToken: accessToken.token!
         }
     });
