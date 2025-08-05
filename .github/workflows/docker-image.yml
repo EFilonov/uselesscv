@@ -13,15 +13,15 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - name: Build the Docker image
-              run: >
-                  docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-                  --build-arg MONGO_URI=${{ secrets.MONGO_URI }}
-                  --build-arg AUTH_SECRET=${{ secrets.AUTH_SECRET }}
-                  --build-arg AUTH_GOOGLE_ID=${{ secrets.AUTH_GOOGLE_ID }}
-                  --build-arg AUTH_GOOGLE_SECRET=${{ secrets.AUTH_GOOGLE_SECRET }}
-                  --build-arg AUTH_GITHUB_ID=${{ secrets.AUTH_GITHUB_ID }}
-                  --build-arg AUTH_GITHUB_SECRET=${{ secrets.AUTH_GITHUB_SECRET }}
-                  --build-arg MAIL_REFRESH_TOKEN=${{ secrets.MAIL_REFRESH_TOKEN }}
-                  --build-arg EMAIL_FROM=${{ secrets.EMAIL_FROM }}
-                  --build-arg NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
-                  --build-arg RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}
+              run: |
+                  docker build . --file Dockerfile --tag my-image-name:$(date +%s) \
+                    --build-arg MONGO_URI="${{ secrets.MONGO_URI }}" \
+                    --build-arg AUTH_SECRET="${{ secrets.AUTH_SECRET }}" \
+                    --build-arg AUTH_GOOGLE_ID="${{ secrets.AUTH_GOOGLE_ID }}" \
+                    --build-arg AUTH_GOOGLE_SECRET="${{ secrets.AUTH_GOOGLE_SECRET }}" \
+                    --build-arg AUTH_GITHUB_ID="${{ secrets.AUTH_GITHUB_ID }}" \
+                    --build-arg AUTH_GITHUB_SECRET="${{ secrets.AUTH_GITHUB_SECRET }}" \
+                    --build-arg MAIL_REFRESH_TOKEN="${{ secrets.MAIL_REFRESH_TOKEN }}" \
+                    --build-arg EMAIL_FROM="${{ secrets.EMAIL_FROM }}" \
+                    --build-arg NEXT_PUBLIC_RECAPTCHA_SITE_KEY="${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" \
+                    --build-arg RECAPTCHA_SECRET_KEY="${{ secrets.RECAPTCHA_SECRET_KEY }}"
