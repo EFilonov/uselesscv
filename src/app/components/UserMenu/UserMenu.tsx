@@ -140,12 +140,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ handleDownload, handlePrint 
                     </MenuItem>
                 )}
                 {session.status === 'authenticated' && <Divider />}
-                {/* <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Another account
-        </MenuItem> */}
+
                 <MenuItem onClick={handleProfile}>
                     <ListItemIcon>
                         <Settings fontSize='small' />
@@ -158,14 +153,14 @@ export const UserMenu: React.FC<UserMenuProps> = ({ handleDownload, handlePrint 
                         <ListItemIcon>
                             <Logout fontSize='small' />
                         </ListItemIcon>
-                        Logout
+                        Sign Out
                     </MenuItem>
                 ) : (
                     <MenuItem onClick={handleLogin}>
                         <ListItemIcon>
                             <GoogleIcon fontSize='small' />
                         </ListItemIcon>
-                        Login
+                        Sign In
                     </MenuItem>
                 )}
             </Menu>
