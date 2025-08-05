@@ -26,15 +26,13 @@ ENV RECAPTCHA_SECRET_KEY=$RECAPTCHA_SECRET_KEY
 
 # Install dependencies only when needed
 FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat bash python3
 
 # Оптимизированная установка пакетных менеджеров
 RUN corepack enable \
     && corepack prepare yarn@stable --activate \
     && corepack prepare pnpm@latest --activate \
-    && npm install -g npm@latest \
-    && npm install -g pnpm
+    && npm install -g npm@latest
 
 WORKDIR /app
 
