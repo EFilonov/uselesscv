@@ -17,7 +17,7 @@ export interface EmploymentHistory {
     title: string;
     company: string;
     date: string;
-    achivments: string[];
+    achievements: string[];
 }
 
 export interface Education {

@@ -17,7 +17,7 @@ export const HistoryBlock: React.FC = () => {
                         </div>
                         <div className='historyYears'>{history.date}</div>
                         <ul className='historyList'>
-                            {history.achivments.map((item, index) => (
+                            {history.achievements.map((item, index) => (
                                 <li key={index} className='historyItem'>
                                     <span className='historyBullet'></span>
                                     <div className='historyText'>{item}</div>

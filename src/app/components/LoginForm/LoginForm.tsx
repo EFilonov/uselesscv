@@ -159,7 +159,7 @@ export const LoginForm = () => {
                             autoComplete='email'
                             {...register('email', {
                                 required: { value: true, message: 'Email is required' },
-                                pattern: { value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/, message: 'Iput valid email' }
+                                pattern: { value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/, message: 'Input valid email' }
                             })}
                             sx={{
                                 m: 0,

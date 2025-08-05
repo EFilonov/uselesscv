@@ -6,7 +6,7 @@ const OAuth2 = google.auth.OAuth2;
 const oauth2Client = new OAuth2(
     process.env.AUTH_GOOGLE_ID!,
     process.env.AUTH_GOOGLE_SECRET!,
-    'http://localhost:3000/oauth2callback' // или свой редирект, если получал токен через сайт
+    `${process.env.NEXT_PUBLIC_URL}/oauth2callback` // или свой редирект, если получал токен через сайт
 );
 
 oauth2Client.setCredentials({

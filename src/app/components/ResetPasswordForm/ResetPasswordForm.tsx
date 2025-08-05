@@ -62,7 +62,7 @@ export const ResetPasswordForm = () => {
     };
 
     const onAlertClose = () => {
-        if (messageToUser?.includes('Succees')) {
+        if (messageToUser?.includes('Success')) {
             router.push('/auth/signin');
         }
         setMessageToUser(null);
@@ -157,7 +157,7 @@ export const ResetPasswordForm = () => {
                     </div>
                     {messageToUser && (
                         <Alert
-                            severity={messageToUser.includes('Succees') ? 'success' : 'error'}
+                            severity={messageToUser.includes('Success') ? 'success' : 'error'}
                             sx={{ mt: 2, mb: 2 }}
                             onClose={onAlertClose}>
                             {messageToUser}

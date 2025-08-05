@@ -25,7 +25,7 @@ export const data: clientData = {
             title: 'Software Developer, TechNova Solutions',
             company: 'San Diego, CA',
             date: 'Feb 2022 - Present',
-            achivments: [
+            achievements: [
                 'Built and deployed a microservice for payment processing, reducing API response time by 40%.',
                 'Led migration to a Django + React stack, improving maintainability and developer efficiency.',
                 'Implemented CI/CD pipelines using GitHub Actions and Docker, accelerating release cycles by 25%.'
@@ -35,7 +35,7 @@ export const data: clientData = {
             title: 'Junior Web Developer, BrightEdge Labs',
             company: 'Remote',
             date: 'Jun 2020 - Jan 2022',
-            achivments: [
+            achievements: [
                 'Improved performance of an e-commerce platform (Node.js + Vue.js), raising Lighthouse score from 62 to 92.',
                 'Contributed to a product recommendation engine powered by machine learning, increasing conversion by 12%.',
                 'Developed and maintained reusable frontend components, enhancing code consistency and scalability.'
