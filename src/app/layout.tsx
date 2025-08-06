@@ -9,18 +9,18 @@ export const metadata: Metadata = {
     title: 'Useless CV',
     description: "Landon Harper's Useless CV",
     openGraph: {
-        title: 'uselesscv.vercel.app',
+        title: 'uselesscv.vercel.app by Evgen',
         description:
             'Resume website. You can download your CV as a PDF. Print with one click. Just sign in via Google, GitHub, or create your own password.',
         images: [
             {
-                url: `https://${process.env.NEXT_PUBLIC_URL}.vercel.app/images/openGraph.png`,
+                url: `${process.env.NEXT_PUBLIC_URL}/images/openGraph.png`,
                 width: 1200,
                 height: 630,
                 alt: 'useless-cv Open Graph Image'
             }
         ],
-        url: process.env.NEXT_PUBLIC_URL, // Replace with actual URL
+        url: process.env.NEXT_PUBLIC_URL,
         type: 'website',
         siteName: 'UselessCV',
         locale: 'en_US'

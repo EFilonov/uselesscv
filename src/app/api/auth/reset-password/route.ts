@@ -8,7 +8,6 @@ import bcrypt from 'bcrypt';
 
 export async function POST(req: NextRequest) {
     const { token, password } = await req.json();
-    console.log('Reset Password Request:', process.env.MONGO_URI);
     if (!token || !password) return NextResponse.json({ error: 'Invalid input' }, { status: 400 });
 
     await connectMongo();
