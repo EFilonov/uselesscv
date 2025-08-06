@@ -8,6 +8,9 @@ import { SessionProvider } from 'next-auth/react';
 export const metadata: Metadata = {
     title: 'Useless CV',
     description: "Landon Harper's Useless CV",
+    verification: {
+        google: 'th9cbxlrOlqqGX9lvhY_UJpp24-0rD485_zic0sN4_w'
+    },
     openGraph: {
         title: 'uselesscv.vercel.app by Evgen',
         description:
