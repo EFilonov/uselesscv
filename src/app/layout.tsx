@@ -8,6 +8,11 @@ import { SessionProvider } from 'next-auth/react';
 export const metadata: Metadata = {
     title: 'Useless CV',
     description: "Landon Harper's Useless CV",
+    icons: {
+        icon: '/favicon.ico',
+        shortcut: '/favicon-96x96.png',
+        apple: '/apple-touch-icon.png'
+    },
     verification: {
         google: 'th9cbxlrOlqqGX9lvhY_UJpp24-0rD485_zic0sN4_w'
     },
