@@ -32,7 +32,6 @@ export const LoginForm = () => {
     const [userError, setUserError] = useState<string | null>(null);
     const [formKey, setFormKey] = useState(0);
     const router = useRouter();
-    // const passwordRef = useRef<HTMLInputElement>(null);
 
     interface Inputs {
         email: string;
@@ -58,15 +57,17 @@ export const LoginForm = () => {
 
     const onSubmit = async (data: Inputs) => {
         try {
+            const normalizedEmail = data.email.toLowerCase().trim();
+
             const result = await signIn('credentials', {
-                email: data.email,
+                email: normalizedEmail,
                 password: data.password,
-                redirect: false // не перенаправлять автоматически
+                redirect: false
             });
 
             if (result?.error) {
                 console.warn('Login error:', result.error);
-                setUserError(result.error === 'CredentialsSignin' ? 'Invalid email or password' : null); // Установить ошибку для отображения
+                setUserError(result.error === 'CredentialsSignin' ? 'Invalid email or password' : null);
             } else {
                 router.push('/');
             }

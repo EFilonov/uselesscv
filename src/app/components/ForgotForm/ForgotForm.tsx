@@ -37,10 +37,12 @@ export const ForgotForm = () => {
             return;
         }
 
+        const normalizedEmail = email.toLowerCase().trim();
+
         const res = await fetch('/api/auth/forgot-password', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, token })
+            body: JSON.stringify({ email: normalizedEmail, token })
         });
 
         if (res.ok) {

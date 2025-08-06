@@ -38,10 +38,12 @@ export const RegisterForm = () => {
             return;
         }
 
+        const normalizedEmail = email.toLowerCase().trim();
+
         const res = await fetch('/api/auth/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, password })
+            body: JSON.stringify({ name, email: normalizedEmail, password })
         });
 
         if (res.ok) {
