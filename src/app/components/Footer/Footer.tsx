@@ -2,7 +2,6 @@ import React from 'react';
 
 import { data } from './../../constants/data';
 import './Footer.css';
-import { FooterProps } from './Footer.props.interface';
 
 export const Footer: React.FC = () => {
     const { phone, email, address } = data;

@@ -16,11 +16,15 @@
 }
 html {
     scroll-behavior: smooth;
+    height: 100%; /* Добавить */
+    overflow-x: hidden; /* Добавить */
+    -webkit-text-size-adjust: 100%;
 }
 
 html body h1 {
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Добавить */
 }
 
 body {
@@ -29,7 +33,22 @@ body {
     background: var(--foreground);
     min-width: 320px;
     min-height: 100vh;
+    min-height: 100dvh;
+    /* height: 800px; */
     font-family: 'HelveticaNeue', Arial, sans-serif;
+
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+@supports (-webkit-touch-callout: none) {
+    html {
+        height: -webkit-fill-available;
+    }
+
+    body {
+        min-height: -webkit-fill-available;
+    }
 }
 
 @font-face {
