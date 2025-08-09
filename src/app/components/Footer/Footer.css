@@ -6,6 +6,7 @@
     height: 60px;
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
     align-items: center;
     justify-items: center;
     z-index: 1000;
@@ -21,11 +22,12 @@
 
 .footer .footerDetails,
 .footer .footerPhone,
-.footer .footerEmail,
-.footer .footerLocation {
+.footer .footerEmail {
+    margin-top: 10px;
     text-align: center;
     color: var(--secondary);
-    font-size: var(--small);
+    font-size: 13px;
+    line-height: 28px;
     text-decoration: none;
     color: var(--footer-text-color);
     justify-self: center;
@@ -38,13 +40,38 @@
     color: var(--secondary);
     font-size: var(--small);
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     justify-items: space-between;
     align-items: center;
 }
+.footerSeparator {
+    display: inline-block;
+}
+.privacyTerms {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    width: 340px;
+    justify-items: space-around;
+    justify-self: center;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+.privacyTerms a {
+    color: #838282;
+    font-size: 10px;
+    /* line-height: 10px; */
+    text-decoration: none;
+    align-self: center;
+}
+.footerTerms,
+.footerPrivacy {
+    display: block;
+    /* align-self: flex-end; */
+    justify-self: center;
+}
 
-@media (max-width: 1065px) {
+@media (max-width: 1024) {
     .footer .footerText {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
@@ -53,10 +80,5 @@
     .footer .footerLocation,
     .footer .footerDetails {
         display: none;
-    }
-
-    .footer .footerPhone,
-    .footer .footerEmail {
-        margin: 8px auto;
     }
 }

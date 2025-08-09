@@ -19,8 +19,17 @@ export const Footer: React.FC = () => {
                         {email.short}
                     </a>
                 </span>
-                <span className='footerLocation'>{address}</span>
+                {/* <span className='footerLocation'>{address}</span> */}
             </p>
+            <div className='privacyTerms'>
+                <a href='/terms' className='footerTerms'>
+                    Terms of Use
+                </a>
+                {/* <span className='footerSeparator'>|</span> */}
+                <a href='/privacy' className='footerPrivacy'>
+                    Privacy Policy
+                </a>
+            </div>
         </footer>
     );
 };
