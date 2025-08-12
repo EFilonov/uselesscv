@@ -1,7 +1,7 @@
-import { clientData } from '../interfaces/clientData.interface';
+import { clientData } from './../interfaces/clientData.interface';
 
 export const data: clientData = {
-    name: 'LANDON HARPER',
+    name: 'Landon Harper',
     occupation: 'Programmer',
     address: '2435 Lincoln Avenue San Diego, CA 92104 United States',
     phone: { short: '(619) 555-0147', full: 'tel:+16195550147' },

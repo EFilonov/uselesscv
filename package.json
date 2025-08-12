@@ -1,8 +1,7 @@
 {
     "name": "useless-cv",
     "version": "1.0.0",
-    "private": false,
-    "website": "https://nextjs-15-starter-core-core.vercel.app/",
+    "website": "https://uselesscv.vercel.app",
     "license": "MIT",
     "scripts": {
         "dev": "next dev --turbopack",
@@ -11,7 +10,8 @@
         "start": "next start",
         "lint": "next lint",
         "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
-        "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+        "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+        "codegen": "contentful-typescript-codegen --output src/app/types/contentful.d.ts"
     },
     "dependencies": {
         "@emotion/react": "^11.14.0",
@@ -21,6 +21,7 @@
         "@types/bcrypt": "^6.0.0",
         "bcrypt": "^6.0.0",
         "classnames": "^2.5.1",
+        "contentful": "^11.7.15",
         "googleapis": "^154.1.0",
         "html2pdf.js": "^0.10.3",
         "mongoose": "^8.16.5",
@@ -46,6 +47,8 @@
         "@types/nodemailer": "^6.4.17",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
+        "contentful-management": "^11.54.4",
+        "contentful-typescript-codegen": "^3.4.0",
         "eslint": "^9.32.0",
         "eslint-config-next": "^15.4.2",
         "eslint-config-prettier": "^10.1.8",
@@ -56,6 +59,7 @@
         "globals": "^16.3.0",
         "postcss": "^8.5.6",
         "prettier": "^3.6.2",
+        "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.38.0"
     }
