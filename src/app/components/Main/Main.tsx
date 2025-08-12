@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { data } from '../../constants/data';
+import { data as staticData } from '../../constants/data';
 import { Aside } from '../Aside/Aside';
 import { Footer } from '../Footer/Footer';
 import { HwithLine } from '../HWithLine/HwithLine';
@@ -10,7 +10,13 @@ import { Header } from '../Header/Header';
 import { HistoryBlock } from '../HistoryBlock/HistoryBlock';
 import './Main.css';
 
-export const Main = () => {
+interface MainProps {
+    data?: any;
+}
+
+export const Main = ({ data: dynamicData }: MainProps) => {
+    const data = staticData;
+    console.log('data', dynamicData);
     const [invert, setInvert] = useState(false);
     const [isVisibleName, setIsVisibleName] = useState(false);
     const titleRef = useRef<HTMLHeadingElement | null>(null);
