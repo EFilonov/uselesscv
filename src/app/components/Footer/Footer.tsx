@@ -1,31 +1,31 @@
 import React from 'react';
 
-import { data } from './../../constants/data';
+import { useStore } from '../../store/zustandStore';
 import './Footer.css';
 
 export const Footer: React.FC = () => {
-    const { phone, email, address } = data;
+    const data = useStore((state) => state.data);
+
     return (
         <footer className='footer'>
             <p className='footerText'>
                 <span className='footerDetails'>{`© ${new Date().getFullYear()} Landon Harper — Resume`}</span>
                 <span className='footerContact'>
-                    <a href={data.phone.full} className='footerPhone' type='tel'>
-                        {phone.short}
+                    <a href={data?.phoneFull} className='footerPhone' type='tel'>
+                        {data?.phoneShort}
                     </a>
                 </span>
                 <span className='footerContact'>
-                    <a href={data.email.full} className='footerEmail' type='tel'>
-                        {email.short}
+                    <a href={data?.emailFull} className='footerEmail' type='tel'>
+                        {data?.emailShort}
                     </a>
                 </span>
-                {/* <span className='footerLocation'>{address}</span> */}
             </p>
             <div className='privacyTerms'>
                 <a href='/terms' className='footerTerms'>
                     Terms of Use
                 </a>
-                {/* <span className='footerSeparator'>|</span> */}
+
                 <a href='/privacy' className='footerPrivacy'>
                     Privacy Policy
                 </a>

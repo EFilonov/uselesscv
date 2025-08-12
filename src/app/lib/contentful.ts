@@ -1,31 +1,33 @@
+import { clientData } from '../interfaces/clientData.interface';
 import { contentfulClient } from '../services/contentfulService';
+import type { Entry } from 'contentful';
 
-export async function getContentfulData() {
+type DatacvSkeleton = {
+    contentTypeId: 'datacv';
+    fields: clientData;
+};
+
+export async function getContentfulData(): Promise<Entry<DatacvSkeleton>[]> {
     try {
-        const entries = await contentfulClient.getEntries();
+        const entries = await contentfulClient.getEntries<DatacvSkeleton>({
+            content_type: 'datacv'
+        });
         return entries.items;
     } catch (error) {
         console.error('Error fetching Contentful data:', error);
-        return null;
+        return [];
     }
 }
 
-export async function getClientData(): Promise<any> {
+export async function getClientData(): Promise<clientData | null> {
     const contentfulData = await getContentfulData();
-    // console.log('contentfulData', contentfulData);
 
-    if (!contentfulData) {
-        throw new Error('Failed to fetch data from Contentful');
+    if (!contentfulData || contentfulData.length === 0) {
+        console.error('Failed to fetch data from Contentful');
+        return null;
     }
-    // Assuming the first entry contains the client data
-    const entry = contentfulData[0].fields;
-    return {
-        name: entry.name,
-        occupation: entry.occupation,
-        address: entry.address
-        // phone: {
-        //     short: entry.phone.short,
-        //     full: entry.phone.full
-        // }
-    };
+
+    const fields = contentfulData[0].fields as clientData;
+
+    return fields;
 }
