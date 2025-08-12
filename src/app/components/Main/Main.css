@@ -5,7 +5,6 @@
     min-height: 100dvh;
 }
 .container {
-    /* margin: 80px auto 0 auto; */
     background: var(--background);
     padding: 30px 30px 50px 30px;
     box-shadow: 0 2px 4px var(--shadow);

@@ -1,23 +1,24 @@
 import React from 'react';
 
-import { data } from '../../constants/data';
+import { useStore } from '../../store/zustandStore';
 import './HistoryBlock.css';
 
 export const HistoryBlock: React.FC = () => {
-    const { ehistory } = data;
+    const data = useStore((state) => state.data);
+    const ehistory = data?.achievements || [];
 
     return (
         <div className='historyBlock'>
-            {ehistory.map((history, idx) => {
+            {ehistory.map((history) => {
                 return (
-                    <div key={idx}>
+                    <div key={history.fields.title} className='historyItem'>
                         <div className='historyHeader'>
-                            <div className='historyTitle'>{history.title}</div>
-                            <div className='historyCompany'>{history.company}</div>
+                            <div className='historyTitle'>{history.fields.title}</div>
+                            <div className='historyCompany'>{history.fields.company}</div>
                         </div>
-                        <div className='historyYears'>{history.date}</div>
+                        <div className='historyYears'>{history.fields.date}</div>
                         <ul className='historyList'>
-                            {history.achievements.map((item, index) => (
+                            {history.fields.achievements.map((item, index) => (
                                 <li key={index} className='historyItem'>
                                     <span className='historyBullet'></span>
                                     <div className='historyText'>{item}</div>

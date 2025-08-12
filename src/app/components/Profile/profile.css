@@ -1,16 +1,69 @@
-.profile-page {
+.profilePage {
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .profileContainer {
-    max-width: 600px;
-    margin: 80px auto 0 auto;
+    max-width: 1000px;
+    margin: 20px auto 0 auto;
     background: var(--background);
     box-shadow: 0 2px 4px var(--shadow);
     padding: 30px;
 }
 
-.profile-info {
+.profileInfo {
     margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 20px;
+}
+
+.email {
+    margin-top: 10px;
+}
+
+.profileDivider {
+    margin-top: 20px;
+}
+
+.chema {
+    margin-top: 20px;
+}
+
+.graph {
+    width: 80vw; /* 80% ширины вьюпорта */
+    max-width: 800px; /* максимальная ширина */
+    min-width: 300px; /* минимальная ширина */
+    margin: 0 auto; /* центрирование */
+}
+
+.schemaImage {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.reachOut span {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+    .graph {
+        width: 85vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .graph {
+        width: 90vw;
+        min-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .graph {
+        width: 95vw;
+        min-width: 260px;
+    }
 }
