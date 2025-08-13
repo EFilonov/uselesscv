@@ -6,8 +6,8 @@ import './globals.css';
 import { SessionProvider } from 'next-auth/react';
 
 export const metadata: Metadata = {
-    title: 'Useless CV',
-    description: "Landon Harper's Useless CV",
+    title: 'CV Builder',
+    description: 'Professional CV and Portfolio Builder',
     icons: {
         icon: '/favicon.ico',
         shortcut: '/favicon-96x96.png',
@@ -17,20 +17,19 @@ export const metadata: Metadata = {
         google: 'th9cbxlrOlqqGX9lvhY_UJpp24-0rD485_zic0sN4_w'
     },
     openGraph: {
-        title: 'uselesscv.vercel.app by Evgen',
-        description:
-            'Resume website. You can download your CV as a PDF. Print with one click. Just sign in via Google, GitHub, or create your own password.',
+        title: 'Professional CV Builder by Evgen',
+        description: 'Create and manage your professional CV with ease',
         images: [
             {
                 url: `${process.env.NEXT_PUBLIC_URL}/images/openGraph.png`,
                 width: 1200,
                 height: 630,
-                alt: 'useless-cv Open Graph Image'
+                alt: 'uselesscv Open Graph Image'
             }
         ],
         url: process.env.NEXT_PUBLIC_URL,
         type: 'website',
-        siteName: 'UselessCV',
+        siteName: 'CV Builder',
         locale: 'en_US'
     }
 };
