@@ -16,6 +16,7 @@ import { useForm } from 'react-hook-form';
 export const ForgotForm = () => {
     const [formKey, setFormKey] = useState<number>(0);
     const [status, setStatus] = useState<string>('');
+    const [statusType, setStatusType] = useState<'success' | 'error'>('error');
     const { executeRecaptcha } = useReCaptcha();
     const router = useRouter();
 
@@ -34,29 +35,36 @@ export const ForgotForm = () => {
         const token = await executeRecaptcha('form_submit');
         if (!token) {
             setStatus('Please confirm you are not a robot.');
+            setStatusType('error');
             return;
         }
 
         const normalizedEmail = email.toLowerCase().trim();
 
-        const res = await fetch('/api/auth/forgot-password', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: normalizedEmail, token })
-        });
+        try {
+            const res = await fetch('/api/auth/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: normalizedEmail, token })
+            });
 
-        if (res.ok) {
-            setStatus('Reset email sent successfully. Please check your inbox.');
-        } else if (res.status === 404) {
-            setStatus('User with this email was not found.');
-        } else {
-            const { error } = await res.json();
-            setStatus(`Error: ${error}`);
+            const data = await res.json();
+
+            if (res.ok) {
+                setStatus(data.message || 'Reset email sent successfully. Please check your inbox.');
+                setStatusType('success');
+            } else {
+                setStatus(data.error || 'An error occurred. Please try again.');
+                setStatusType('error');
+            }
+        } catch (error) {
+            setStatus('Network error occurred. Please try again.');
+            setStatusType('error');
         }
     };
 
     const onAlertClose = () => {
-        if (status !== 'User with this email was not found.') {
+        if (statusType === 'success') {
             router.push('/auth/signin');
         }
         setStatus('');
@@ -69,11 +77,7 @@ export const ForgotForm = () => {
             <Card className='loginForm'>
                 <h3 className='loginTitle'>Reset password</h3>
 
-                <form
-                    key={formKey} // add key
-                    className='loginFormContent'
-                    id='form'
-                    onSubmit={handleSubmit(onSubmit)}>
+                <form key={formKey} className='loginFormContent' id='form' onSubmit={handleSubmit(onSubmit)}>
                     <h4>Enter your email below</h4>
                     <div className='login'>
                         <TextField
@@ -120,16 +124,11 @@ export const ForgotForm = () => {
                             Click here
                         </Link>
                     </div>
-                    {status &&
-                        (console.log(status),
-                        (
-                            <Alert
-                                severity={status.includes('Reset email') ? 'success' : 'error'}
-                                sx={{ mt: 2, mb: 2 }}
-                                onClose={onAlertClose}>
-                                {status}
-                            </Alert>
-                        ))}
+                    {status && (
+                        <Alert severity={statusType} sx={{ mt: 2, mb: 2 }} onClose={onAlertClose}>
+                            {status}
+                        </Alert>
+                    )}
                 </form>
             </Card>
         </div>
