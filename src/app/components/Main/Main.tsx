@@ -17,8 +17,6 @@ import './Main.css';
 export const Main = () => {
     const data = useStore((state) => state.data) as clientData | null;
     const isLoading = useStore((state) => state.isLoading);
-    console.log('Main component data:', data);
-
     const [invert, setInvert] = useState(false);
     const [isVisibleName, setIsVisibleName] = useState(false);
     const titleRef = useRef<HTMLHeadingElement | null>(null);
