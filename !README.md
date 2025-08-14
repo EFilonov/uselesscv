@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🎯 Useless CV
+<img src="https://uselesscv.vercel.app/Logo.svg" alt="Useless CV Logo" width="120" height="60" />
+
+#  Useless CV
 ### Professional Portfolio Builder
 
 <p align="center">
@@ -24,12 +26,25 @@ A modern, full-stack web application for creating and managing professional CVs 
 
 <div align="center">
 
-| 🔐 Authentication | 📧 Email Services | 📱 Responsive Design | 📊 Content Management |
-|:-----------------:|:----------------:|:---------------------:|:----------------------:|
-| NextAuth.js       | Gmail API        | Mobile-First          | Contentful CMS         |
-| Google OAuth      | OAuth2 Auth      | Material-UI           | Real-time Updates      |
-| bcryptjs Hashing  | Password Reset   |                       | Media Management       |
-| JWT Tokens        | Custom Templates | Accessibility         | Preview Mode           |
+| 🔐 Authentication | 📧 Email Services | 📱 Responsive Design | 📊 Content Management | 📄 PDF & Print |
+|:----------------:|:----------------:|:--------------------:|:--------------------:|:---------------:|
+| NextAuth.js | Gmail API | Mobile-First | Contentful CMS | **PDF Export** |
+| Google OAuth | OAuth2 Auth | Material-UI | Real-time Updates | **Print-Optimized** |
+| bcryptjs Hashing | Password Reset | Dark/Light Themes | Media Management | **High Quality** |
+| JWT Tokens | Custom Templates | Accessibility | Preview Mode | **Professional Layout** |
+
+</div>
+
+### 🎯 Premium Features for Authenticated Users
+
+<div align="center">
+
+| Feature | Description | Availability |
+|:-------:|:-----------:|:------------:|
+| 📄 **PDF Export** | Generate high-quality PDF versions of your CV | ✅ **Registered Users Only** |
+| 🖨️ **Print Optimization** | Professional print-friendly layouts with perfect formatting | ✅ **Registered Users Only** |
+| 💾 **Save Templates** | Save and manage multiple CV versions | ✅ **Registered Users Only** |
+| 🎨 **Custom Styling** | Advanced customization options and themes | ✅ **Registered Users Only** |
 
 </div>
 
@@ -58,6 +73,10 @@ A modern, full-stack web application for creating and managing professional CVs 
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 ![reCAPTCHA](https://img.shields.io/badge/reCAPTCHA-4285F4?style=flat-square&logo=google&logoColor=white)
 
+### Document Processing
+![Puppeteer](https://img.shields.io/badge/Puppeteer-40B5A4?style=flat-square&logo=puppeteer&logoColor=white)
+![jsPDF](https://img.shields.io/badge/jsPDF-FF6B6B?style=flat-square&logo=adobe&logoColor=white)
+
 </div>
 
 ---
@@ -68,13 +87,13 @@ A modern, full-stack web application for creating and managing professional CVs 
 
 <div align="center">
 
-| Requirement      | Version | Purpose             |
-|:----------------:|:-------:|:-------------------:|
-| **Node.js**      | 18+     | Runtime Environment |
-| **npm/yarn**     | Latest  | Package Management  |
-| **MongoDB**      | 5.0+    | Database            |
-| **Google Cloud** | -       | OAuth & Gmail API   |
-| **Contentful**   | -       | Content Management  |
+| Requirement | Version | Purpose |
+|:----------:|:-------:|:-------:|
+| **Node.js** | 18+ | Runtime Environment |
+| **npm/yarn** | Latest | Package Management |
+| **MongoDB** | 5.0+ | Database |
+| **Google Cloud** | - | OAuth & Gmail API |
+| **Contentful** | - | Content Management |
 
 </div>
 
@@ -219,21 +238,25 @@ open http://localhost:3000
 │   │   │   ├── forgot-password/ # Password reset
 │   │   │   └── reset-password/  # New password form
 │   │   ├── 👤 profile/          # User dashboard
-│   │   └── 📄 dashboard/        # Admin panel
+│   │   ├── 📄 dashboard/        # Admin panel
+│   │   └── 🖨️ print/            # Print-optimized views
 │   ├── 🔌 api/                  # Backend API routes
 │   │   ├── 🔐 auth/             # Authentication endpoints
 │   │   ├── 📧 email/            # Email services
 │   │   ├── 📄 contentful/       # CMS operations
-│   │   └── 👤 users/            # User management
+│   │   ├── 👤 users/            # User management
+│   │   └── 📄 pdf/              # PDF generation endpoints
 │   ├── 🧩 components/           # Reusable UI components
 │   │   ├── 🎨 Layout/           # Page layouts
 │   │   ├── 📝 Forms/            # Form components
 │   │   ├── 🔘 Buttons/          # Button variants
-│   │   └── 🏷️ Cards/            # Card components
+│   │   ├── 🏷️ Cards/            # Card components
+│   │   └── 📄 PDF/              # PDF export components
 │   ├── 🛠️ lib/                  # Utility libraries
 │   │   ├── 🔐 auth.ts           # NextAuth config
 │   │   ├── 📧 mail.ts           # Email utilities
 │   │   ├── 📄 contentful.ts     # CMS client
+│   │   ├── 📄 pdf.ts            # PDF generation utilities
 │   │   └── 🔧 utils.ts          # Helper functions
 │   ├── 🗄️ dbSchemas/            # Database models
 │   ├── 🔗 services/             # External integrations
@@ -271,6 +294,16 @@ curl -X POST http://localhost:3000/api/auth/register \
 curl -X POST http://localhost:3000/api/auth/signin \
   -H "Content-Type: application/json" \
   -d '{"email":"test@example.com","password":"securePassword123"}'
+```
+
+### 📄 PDF Generation Testing
+
+```bash
+# Test PDF export endpoint (requires authentication)
+curl -X POST http://localhost:3000/api/pdf/generate \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-jwt-token" \
+  -d '{"cvId":"user-cv-id"}'
 ```
 
 ### 📊 Development Scripts
@@ -335,6 +368,21 @@ RUN npm run build
 
 FROM node:18-alpine AS runner
 WORKDIR /app
+
+# Install Puppeteer dependencies for PDF generation
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    freetype-dev \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont
+
+# Set Puppeteer to use installed Chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
@@ -362,14 +410,15 @@ CMD ["npm", "start"]
 
 <div align="center">
 
-| Security Layer       | Implementation     | Status |
-|:---------------------:|:-----------------:|:------:|
-| **Input Validation**  | React Hook Form   | ✅    |
-| **Authentication**    | NextAuth.js + JWT | ✅    |
-| **Password Security** | bcryptjs + Salt   | ✅    |
-| **Bot Protection**    | reCAPTCHA v3      | ✅    |
-| **API Security**      | Rate Limiting     | ⚠️    |
-| **HTTPS**             | SSL/TLS           | ✅    |
+| Security Layer | Implementation | Status |
+|:-------------:|:--------------:|:------:|
+| **Input Validation** | React Hook Form | ✅ |
+| **Authentication** | NextAuth.js + JWT | ✅ |
+| **Password Security** | bcryptjs + Salt | ✅ |
+| **Bot Protection** | reCAPTCHA v3 | ✅ |
+| **API Security** | Rate Limiting | ⚠️ |
+| **HTTPS** | SSL/TLS | ✅ |
+| **PDF Security** | User Authentication Required | ✅ |
 
 </div>
 
@@ -381,6 +430,7 @@ CMD ["npm", "start"]
 - ✅ reCAPTCHA bot protection
 - ✅ Input sanitization
 - ✅ CORS configuration
+- ✅ PDF generation restricted to authenticated users
 - ⚠️ Rate limiting (recommended for production)
 - ⚠️ Content Security Policy (recommended)
 
@@ -439,6 +489,21 @@ NEXTAUTH_DEBUG=true npm run dev
 </details>
 
 <details>
+<summary>❌ PDF Generation Issues</summary>
+
+**Solution:**
+```bash
+# Ensure Puppeteer dependencies are installed
+npm install puppeteer
+
+# For Docker deployments, verify Chromium installation
+# Check user authentication before PDF generation
+# Verify print CSS styles are properly loaded
+```
+
+</details>
+
+<details>
 <summary>❌ Build or Runtime Errors</summary>
 
 **Solution:**
@@ -458,36 +523,6 @@ npm run type-check
 
 ---
 
-## 🤝 Contributing
-
-<div align="center">
-
-We welcome contributions from the community! 
-
-[![Contributors](https://img.shields.io/github/contributors/your-username/useless-cv?style=flat-square)](https://github.com/your-username/useless-cv/graphs/contributors)
-[![Issues](https://img.shields.io/github/issues/your-username/useless-cv?style=flat-square)](https://github.com/your-username/useless-cv/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/your-username/useless-cv?style=flat-square)](https://github.com/your-username/useless-cv/pulls)
-
-</div>
-
-### 🛠️ Development Workflow
-
-1. **🍴 Fork** the repository
-2. **🌿 Create** feature branch: `git checkout -b feature/amazing-feature`
-3. **💫 Commit** changes: `git commit -m 'Add amazing feature'`
-4. **🚀 Push** to branch: `git push origin feature/amazing-feature`
-5. **🔄 Open** Pull Request with detailed description
-
-### 📋 Contribution Guidelines
-
-- Follow existing code style and conventions
-- Add tests for new features
-- Update documentation as needed
-- Ensure CI/CD checks pass
-- Use conventional commit messages
-
----
-
 ## 📄 License & Legal
 
 <div align="center">
@@ -501,6 +536,7 @@ This project is licensed under the **MIT License**
 </div>
 
 ---
+
 ## 🔄 Version History
 
 <div align="center">
@@ -520,6 +556,8 @@ This project is licensed under the **MIT License**
 - 📱 Fully responsive Material-UI design system
 - 🛡️ reCAPTCHA bot protection integration
 - 🔑 Secure password reset functionality
+- 📄 **PDF export functionality for authenticated users**
+- 🖨️ **Print-optimized layouts with professional formatting**
 
 #### 🐛 **Bug Fixes**
 - Fixed OAuth2 token refresh issues
@@ -531,6 +569,7 @@ This project is licensed under the **MIT License**
 - Enhanced error handling and logging
 - Optimized build performance
 - Improved SEO meta tags
+- PDF generation with Puppeteer integration
 
 </details>
 
@@ -542,8 +581,10 @@ This project is licensed under the **MIT License**
 - 🌙 Dark mode toggle
 - 📱 Progressive Web App (PWA) support
 - 🔄 Real-time collaboration
-- 📤 PDF export functionality
+- 📄 Multiple PDF templates and themes
 - 🎨 Custom theme builder
+- 📤 Batch PDF generation
+- 🖨️ Advanced print customization options
 
 </details>
 
