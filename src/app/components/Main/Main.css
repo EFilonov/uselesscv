@@ -29,6 +29,7 @@
     color: #fff;
     z-index: 10;
     position: relative;
+    width: fit-content;
     transition:
         color 0.2s,
         background 0.2s;
@@ -37,6 +38,7 @@
     position: sticky;
     top: 10px;
     opacity: 0;
+    width: fit-content;
 }
 
 .titleProffile {

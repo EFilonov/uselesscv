@@ -24,13 +24,22 @@
     height: 100%;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-areas: 'text buttons';
+    grid-template-areas: 'txt logo buttons';
 }
 
 .headerContent {
+    width: fit-content;
     margin-top: 10px;
     justify-self: start;
-    grid-area: text;
+    grid-area: txt;
+}
+
+.headerLogo {
+    width: fit-content;
+    height: 40px;
+    justify-self: end;
+    align-self: center;
+    grid-area: logo;
 }
 
 .headerBtns {
@@ -47,9 +56,36 @@
 .hidden {
     display: none;
 }
+.logoSmall {
+    display: none;
+}
 
 @media (max-width: 740px) {
     .headerHamburger {
+        display: block;
+    }
+}
+
+@media (max-width: 460px) {
+    @keyframes fontSizeShrink {
+        from {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+        to {
+            font-size: 1rem;
+            margin-top: 22px;
+        }
+    }
+
+    .headerLogo {
+        width: 35px;
+        height: 24px;
+    }
+    .logoLarge {
+        display: none;
+    }
+    .logoSmall {
         display: block;
     }
 }
