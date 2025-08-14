@@ -1,330 +1,570 @@
-# Useless CV - Professional Portfolio Builder
+<div align="center">
 
-A modern, full-stack web application built with Next.js for creating and managing professional CVs and portfolios. Features user authentication, content management with Contentful CMS, and automated email functionality.
+# 🎯 Useless CV
+### Professional Portfolio Builder
 
-## 🚀 Features
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white" alt="Material-UI" />
+</p>
 
-- **User Authentication**: Secure login/register with NextAuth.js
-- **Content Management**: Dynamic content powered by Contentful CMS
-- **Email Services**: Automated password reset and notifications via Gmail API
-- **Responsive Design**: Mobile-first design with Material-UI components
-- **Database Integration**: MongoDB for user data management
-- **Security**: reCAPTCHA integration and secure token handling
+<p align="center">
+A modern, full-stack web application for creating and managing professional CVs and portfolios with seamless user authentication, dynamic content management, and automated email services.
+</p>
 
-## 🛠 Tech Stack
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/useless-cv)
 
-### Frontend
-- **Next.js 14** - React framework with App Router
-- **TypeScript** - Type-safe JavaScript
-- **Material-UI** - Component library and styling
-- **CSS Modules** - Scoped styling
+---
 
-### Backend
-- **Next.js API Routes** - Serverless backend functions
-- **MongoDB** - Database for user management
-- **Mongoose** - MongoDB object modeling
+</div>
 
-### Authentication & Security
-- **NextAuth.js** - Authentication framework
-- **bcryptjs** - Password hashing
-- **Google reCAPTCHA** - Bot protection
+## ✨ Key Features
 
-### Content Management
-- **Contentful** - Headless CMS for dynamic content
-- **Contentful Management API** - Content operations
+<div align="center">
 
-### Email Services
-- **Gmail API** - Email sending via OAuth2
-- **Nodemailer** - Email transport layer
+| 🔐 Authentication | 📧 Email Services | 📱 Responsive Design | 📊 Content Management |
+|:-----------------:|:----------------:|:---------------------:|:----------------------:|
+| NextAuth.js       | Gmail API        | Mobile-First          | Contentful CMS         |
+| Google OAuth      | OAuth2 Auth      | Material-UI           | Real-time Updates      |
+| bcryptjs Hashing  | Password Reset   |                       | Media Management       |
+| JWT Tokens        | Custom Templates | Accessibility         | Preview Mode           |
 
-## 📋 Prerequisites
+</div>
 
-- Node.js 18+ and npm
-- MongoDB database
-- Google Cloud Platform account
-- Contentful account
-- Domain or localhost for development
+---
 
-## ⚙️ Installation
+## 🛠 Technology Stack
 
-### 1. Clone Repository
+<div align="center">
+
+### Frontend Technologies
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Material-UI](https://img.shields.io/badge/Material--UI-0081CB?style=flat-square&logo=material-ui&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-EC5990?style=flat-square&logo=reacthookform&logoColor=white)
+
+### Backend & Database
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=flat-square&logo=mongoose&logoColor=white)
+![NextAuth.js](https://img.shields.io/badge/NextAuth.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+
+### Cloud Services
+![Google Cloud](https://img.shields.io/badge/Google%20Cloud-4285F4?style=flat-square&logo=google-cloud&logoColor=white)
+![Contentful](https://img.shields.io/badge/Contentful-2478CC?style=flat-square&logo=contentful&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![reCAPTCHA](https://img.shields.io/badge/reCAPTCHA-4285F4?style=flat-square&logo=google&logoColor=white)
+
+</div>
+
+---
+
+## 🚀 Quick Start Guide
+
+### 🔧 Prerequisites
+
+<div align="center">
+
+| Requirement      | Version | Purpose             |
+|:----------------:|:-------:|:-------------------:|
+| **Node.js**      | 18+     | Runtime Environment |
+| **npm/yarn**     | Latest  | Package Management  |
+| **MongoDB**      | 5.0+    | Database            |
+| **Google Cloud** | -       | OAuth & Gmail API   |
+| **Contentful**   | -       | Content Management  |
+
+</div>
+
+### 📦 Installation
+
 ```bash
+# 1️⃣ Clone the repository
 git clone https://github.com/your-username/useless-cv.git
 cd useless-cv
+
+# 2️⃣ Install dependencies
 npm install
 
-2. Environment Setup:
-Create .env.local file in root directory:
+# 3️⃣ Copy environment template
+cp .env.example .env.local
+```
 
-# Database
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
+### ⚙️ Environment Configuration
 
+Create `.env.local` file with the following variables:
+
+<details>
+<summary>🗄️ Database Configuration</summary>
+
+```bash
+# MongoDB Connection
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
+```
+
+</details>
+
+<details>
+<summary>🔐 Authentication Setup</summary>
+
+```bash
 # NextAuth Configuration
 NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your-nextauth-secret-key
+NEXTAUTH_SECRET=your-super-secret-key-here
 
-# Google OAuth (for authentication)
-AUTH_GOOGLE_ID=your-google-client-id
+# Google OAuth Credentials
+AUTH_GOOGLE_ID=your-google-client-id.apps.googleusercontent.com
 AUTH_GOOGLE_SECRET=your-google-client-secret
+```
 
-# Email Service
+</details>
+
+<details>
+<summary>📧 Email Service Configuration</summary>
+
+```bash
+# Gmail API Settings
 EMAIL_FROM=your-email@gmail.com
 MAIL_REFRESH_TOKEN=your-gmail-refresh-token
+```
 
+</details>
+
+<details>
+<summary>📄 Content Management System</summary>
+
+```bash
 # Contentful CMS
 CONTENTFUL_SPACE_ID=your-contentful-space-id
 CONTENTFUL_ACCESS_TOKEN=your-contentful-access-token
-CONTENTFUL_PREVIEW_ACCESS_TOKEN=your-contentful-preview-token
 CONTENTFUL_MANAGEMENT_TOKEN=your-contentful-management-token
+```
 
-# reCAPTCHA
+</details>
+
+<details>
+<summary>🛡️ Security & Validation</summary>
+
+```bash
+# reCAPTCHA Protection
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your-recaptcha-site-key
 RECAPTCHA_SECRET_KEY=your-recaptcha-secret-key
 
-# Application
+# Application URL
 NEXT_PUBLIC_URL=http://localhost:3000
+```
 
-    3. Google Cloud Setup
+</details>
 
-- OAuth2 Configuration
-- Go to Google Cloud Console
-- Create new project or select existing
-- Enable Gmail API and Google+ API
-- Create OAuth 2.0 Client ID credentials
-- Add authorized redirect URIs:
+### 🔑 Google Cloud Platform Setup
 
-http://localhost:3000/api/auth/callback/google
-http://localhost:3000
-https://your-domain.com/api/auth/callback/google
+<details>
+<summary>1️⃣ OAuth2 Client Configuration</summary>
 
-    Gmail API Setup
+1. Visit [Google Cloud Console](https://console.cloud.google.com/)
+2. Create new project or select existing one
+3. Enable **Gmail API** and **Google+ API**
+4. Create **OAuth 2.0 Client ID** credentials
+5. Configure authorized redirect URIs:
+   ```
+   http://localhost:3000/api/auth/callback/google
+   http://localhost:3000
+   https://your-domain.com/api/auth/callback/google
+   ```
 
-- Configure OAuth consent screen
-- Add scopes: https://mail.google.com/
-- Generate refresh token using provided script
+</details>
 
-    4. Generate Gmail Refresh Token
+<details>
+<summary>2️⃣ Gmail API Authorization</summary>
 
-# Run the refresh token generator
-npx tsx src/app/lib/getRefreshToken.ts
+1. Configure OAuth consent screen
+2. Add required scopes: `https://mail.google.com/`
+3. Generate refresh token:
+   ```bash
+   npx tsx src/app/lib/getRefreshToken.ts
+   ```
+4. Follow the prompts and add token to `.env.local`
 
-# Follow the prompts to authorize and get your refresh token
-# Add the token to your .env.local file 
+</details>
 
-    5. Contentful Setup
+### 🏃‍♂️ Development Server
 
-- Create account at Contentful
-- Create new space
-- Set up content models for your CV data
-- Generate API keys in Settings > API keys
-- Add keys to environment variables
-
-    6. MongoDB Setup
-
-- Create account at MongoDB Atlas
-- Create new cluster
-- Configure network access and database user
-- Get connection string and add to environment variables
-
-🚀 Development
-
+```bash
 # Start development server
 npm run dev
 
-# Build for production
-npm run build
+# Open browser
+open http://localhost:3000
+```
 
-# Start production server
-npm start
+<div align="center">
 
-# Run type checking
-npm run type-check
+🎉 **Your application is now running!**
 
-# Run linting
-npm run lint
+</div>
 
-📁 Project Structure
+---
 
-src/
-├── app/
-│   ├── (pages)/           # Route groups
-│   │   ├── auth/          # Authentication pages
-│   │   ├── profile/       # User profile pages
-│   │   └── ...
-│   ├── api/               # API routes
-│   │   ├── auth/          # Authentication endpoints
-│   │   ├── contentful/    # CMS endpoints
-│   │   └── ...
-│   ├── components/        # Reusable components
-│   │   ├── Profile/       # Profile components
-│   │   ├── BackButton/    # Navigation components
-│   │   └── ...
-│   ├── lib/               # Utility functions
-│   │   ├── auth.ts        # NextAuth configuration
-│   │   ├── mail.ts        # Email services
-│   │   ├── contentful.ts  # CMS integration
-│   │   └── ...
-│   ├── dbSchemas/         # Database schemas
-│   ├── services/          # External service integrations
-│   ├── globals.css        # Global styles
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Home page
-├── public/                # Static assets
-└── types/                 # TypeScript type definitions
+## 📁 Project Architecture
 
-🔧 Configuration Files
+```
+📂 src/
+├── 🏠 app/
+│   ├── 📱 (pages)/              # App Router pages
+│   │   ├── 🔐 auth/             # Authentication flows
+│   │   │   ├── signin/          # Login page
+│   │   │   ├── signup/          # Registration page
+│   │   │   ├── forgot-password/ # Password reset
+│   │   │   └── reset-password/  # New password form
+│   │   ├── 👤 profile/          # User dashboard
+│   │   └── 📄 dashboard/        # Admin panel
+│   ├── 🔌 api/                  # Backend API routes
+│   │   ├── 🔐 auth/             # Authentication endpoints
+│   │   ├── 📧 email/            # Email services
+│   │   ├── 📄 contentful/       # CMS operations
+│   │   └── 👤 users/            # User management
+│   ├── 🧩 components/           # Reusable UI components
+│   │   ├── 🎨 Layout/           # Page layouts
+│   │   ├── 📝 Forms/            # Form components
+│   │   ├── 🔘 Buttons/          # Button variants
+│   │   └── 🏷️ Cards/            # Card components
+│   ├── 🛠️ lib/                  # Utility libraries
+│   │   ├── 🔐 auth.ts           # NextAuth config
+│   │   ├── 📧 mail.ts           # Email utilities
+│   │   ├── 📄 contentful.ts     # CMS client
+│   │   └── 🔧 utils.ts          # Helper functions
+│   ├── 🗄️ dbSchemas/            # Database models
+│   ├── 🔗 services/             # External integrations
+│   └── 🎨 styles/               # Global stylesheets
+├── 📸 public/                   # Static assets
+├── 📋 types/                    # TypeScript definitions
+└── 🔧 config/                   # Configuration files
+```
 
-    next.config.js
+---
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-  images: {
-    domains: ['images.ctfassets.net', 'lh3.googleusercontent.com'],
-  },
-}
+## 🧪 Testing & Validation
 
-module.exports = nextConfig
+### 📧 Email Service Testing
 
-    tsconfig.json
-
-{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "es6"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
-}
-
-🧪 Testing
-
-Test Email Service
-
-# Test Gmail API configuration
+```bash
+# Test Gmail API connection
 npx tsx src/app/lib/testRefreshToken.ts
 
-# Test email sending functionality
-curl -X POST http://localhost:3000/api/test-email
+# Test password reset flow
+curl -X POST http://localhost:3000/api/auth/forgot-password \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","token":"recaptcha-token"}'
+```
 
-Test Authentication
+### 🔐 Authentication Testing
 
-- Start development server
-- Navigate to /auth/signin
-- Test Google OAuth flow
-- Verify user creation in MongoDB
+```bash
+# Test user registration
+curl -X POST http://localhost:3000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"securePassword123"}'
 
-    🔒 Security Considerations
+# Test login endpoint
+curl -X POST http://localhost:3000/api/auth/signin \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"securePassword123"}'
+```
 
-- Environment Variables: Never commit .env.local to version control
-- API Keys: Rotate tokens regularly
-- CORS: Configure proper origins for production
-- Rate Limiting: Implement for API endpoints in production
-- Input Validation: Validate all user inputs
-- SQL Injection: Use parameterized queries with Mongoose
+### 📊 Development Scripts
 
-    📦 Deployment
+```bash
+npm run dev          # 🚀 Start development server
+npm run build        # 🏗️ Build production bundle
+npm run start        # ▶️ Start production server
+npm run lint         # 🔍 Run ESLint checks
+npm run type-check   # 📝 TypeScript validation
+npm run test         # 🧪 Run test suite
+```
 
-Vercel (Recommended)
+---
 
-- Connect GitHub repository to Vercel
-- Add environment variables in Vercel dashboard
-- Configure custom domain if needed
-- Deploy automatically on push to main branch
+## 🚀 Production Deployment
 
-Environment Variables for Production
+### 🌐 Vercel Deployment (Recommended)
 
- # Update these for production
-NEXTAUTH_URL=https://your-domain.com
-NEXT_PUBLIC_URL=https://your-domain.com
+<div align="center">
 
-# Add production database URI
-MONGODB_URI=mongodb+srv://production-credentials
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/useless-cv)
 
-# Update OAuth redirect URIs in Google Cloud Console
+</div>
 
-    🐛 Troubleshooting
+#### Step-by-step deployment:
 
-Common Issues:
+1. **Connect Repository**
+   - Link your GitHub repository to Vercel
+   - Configure automatic deployments
 
-Gmail API "invalid_grant" Error
+2. **Environment Variables**
+   - Add all `.env.local` variables to Vercel dashboard
+   - Update URLs for production:
+     ```bash
+     NEXTAUTH_URL=https://your-domain.com
+     NEXT_PUBLIC_URL=https://your-domain.com
+     ```
+
+3. **Domain Configuration**
+   - Add custom domain (optional)
+   - Configure DNS settings
+
+4. **OAuth Redirect URIs**
+   - Update Google Cloud Console with production URLs
+   - Add production callback URLs
+
+### 🔧 Alternative Deployments
+
+<details>
+<summary>🐳 Docker Deployment</summary>
+
+```dockerfile
+# Dockerfile
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+RUN npm run build
+
+FROM node:18-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+</details>
+
+<details>
+<summary>☁️ Railway Deployment</summary>
+
+1. Connect GitHub repository to Railway
+2. Add environment variables
+3. Deploy automatically on push
+
+</details>
+
+---
+
+## 🔒 Security Best Practices
+
+<div align="center">
+
+| Security Layer       | Implementation     | Status |
+|:---------------------:|:-----------------:|:------:|
+| **Input Validation**  | React Hook Form   | ✅    |
+| **Authentication**    | NextAuth.js + JWT | ✅    |
+| **Password Security** | bcryptjs + Salt   | ✅    |
+| **Bot Protection**    | reCAPTCHA v3      | ✅    |
+| **API Security**      | Rate Limiting     | ⚠️    |
+| **HTTPS**             | SSL/TLS           | ✅    |
+
+</div>
+
+### 🛡️ Security Checklist
+
+- ✅ Environment variables secured
+- ✅ Password hashing with bcryptjs
+- ✅ JWT token validation
+- ✅ reCAPTCHA bot protection
+- ✅ Input sanitization
+- ✅ CORS configuration
+- ⚠️ Rate limiting (recommended for production)
+- ⚠️ Content Security Policy (recommended)
+
+---
+
+## 🐛 Troubleshooting Guide
+
+<details>
+<summary>❌ Gmail API "invalid_grant" Error</summary>
+
+**Solution:**
+```bash
 # Regenerate refresh token
 npx tsx src/app/lib/getRefreshToken.ts
 
-Contentful Connection Issues:
+# Ensure redirect URIs match in Google Cloud Console
+# Check that EMAIL_FROM matches the Google account used
+```
 
-Verify space ID and API tokens
-Check network access and API rate limits
+</details>
 
-MongoDB Connection Failed:
+<details>
+<summary>❌ MongoDB Connection Issues</summary>
 
-Verify connection string format
-Check network access settings in MongoDB Atlas
+**Common causes:**
+- Incorrect connection string format
+- Network access restrictions in MongoDB Atlas
+- Database user permissions
 
-NextAuth Configuration Issues:
+**Solution:**
+```bash
+# Test connection
+node -e "console.log(process.env.MONGODB_URI)"
 
-Ensure NEXTAUTH_SECRET is set
-Verify OAuth callback URLs
+# Verify Atlas IP whitelist includes your server
+# Check database user has proper permissions
+```
 
-Debug Mode:
+</details>
 
-# Enable debug logging
-DEBUG=* npm run dev
+<details>
+<summary>❌ NextAuth Configuration Problems</summary>
 
-# NextAuth debug
+**Solution:**
+```bash
+# Ensure environment variables are set
+echo $NEXTAUTH_SECRET
+echo $NEXTAUTH_URL
+
+# Enable debug mode
 NEXTAUTH_DEBUG=true npm run dev
 
-    🤝 Contributing
+# Check OAuth provider configuration
+```
 
-- Fork the repository
-- Create feature branch (git checkout -b feature/amazing-feature)
-- Commit changes (git commit -m 'Add amazing feature')
-- Push to branch (git push origin feature/amazing-feature)
-- Open Pull Request
+</details>
 
-    📄 License
+<details>
+<summary>❌ Build or Runtime Errors</summary>
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+**Solution:**
+```bash
+# Clear Next.js cache
+rm -rf .next
 
-    🆘 Support
+# Reinstall dependencies
+rm -rf node_modules package-lock.json
+npm install
 
-Documentation: Check this README and inline code comments
-Issues: Open GitHub issue for bugs or feature requests
-Email: Contact support at evgeniyfilonov@gmail.com
+# Check TypeScript errors
+npm run type-check
+```
 
-    🔄 Changelog
+</details>
 
-v1.0.0 (2025-08-13)
-Initial release
-User authentication with NextAuth.js
-Gmail API integration for email services
-Contentful CMS integration
-MongoDB user management
-Responsive Material-UI design
+---
 
-________________________________________________________________________________
+## 🤝 Contributing
 
-Built with ❤️ using Next.js and TypeScript
+<div align="center">
+
+We welcome contributions from the community! 
+
+[![Contributors](https://img.shields.io/github/contributors/your-username/useless-cv?style=flat-square)](https://github.com/your-username/useless-cv/graphs/contributors)
+[![Issues](https://img.shields.io/github/issues/your-username/useless-cv?style=flat-square)](https://github.com/your-username/useless-cv/issues)
+[![Pull Requests](https://img.shields.io/github/issues-pr/your-username/useless-cv?style=flat-square)](https://github.com/your-username/useless-cv/pulls)
+
+</div>
+
+### 🛠️ Development Workflow
+
+1. **🍴 Fork** the repository
+2. **🌿 Create** feature branch: `git checkout -b feature/amazing-feature`
+3. **💫 Commit** changes: `git commit -m 'Add amazing feature'`
+4. **🚀 Push** to branch: `git push origin feature/amazing-feature`
+5. **🔄 Open** Pull Request with detailed description
+
+### 📋 Contribution Guidelines
+
+- Follow existing code style and conventions
+- Add tests for new features
+- Update documentation as needed
+- Ensure CI/CD checks pass
+- Use conventional commit messages
+
+---
+
+## 📄 License & Legal
+
+<div align="center">
+
+This project is licensed under the **MIT License**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
+**Free to use, modify, and distribute**
+
+</div>
+
+---
+## 🔄 Version History
+
+<div align="center">
+
+### 🎉 Latest Release
+
+</div>
+
+<details>
+<summary>📋 v1.0.0 (August 14, 2025)</summary>
+
+#### ✨ **New Features**
+- 🔐 Complete user authentication system with NextAuth.js
+- 📧 Gmail API integration for automated email services
+- 📄 Contentful CMS integration for dynamic content
+- 🗄️ MongoDB user management and data persistence
+- 📱 Fully responsive Material-UI design system
+- 🛡️ reCAPTCHA bot protection integration
+- 🔑 Secure password reset functionality
+
+#### 🐛 **Bug Fixes**
+- Fixed OAuth2 token refresh issues
+- Resolved email template rendering problems
+- Corrected responsive layout inconsistencies
+
+#### 🏗️ **Technical Improvements**
+- TypeScript strict mode implementation
+- Enhanced error handling and logging
+- Optimized build performance
+- Improved SEO meta tags
+
+</details>
+
+<details>
+<summary>🚧 Upcoming in v1.1.0</summary>
+
+#### 🎯 **Planned Features**
+- 📊 Analytics dashboard
+- 🌙 Dark mode toggle
+- 📱 Progressive Web App (PWA) support
+- 🔄 Real-time collaboration
+- 📤 PDF export functionality
+- 🎨 Custom theme builder
+
+</details>
+
+---
+
+<div align="center">
+
+### 🌟 Built with passion using Next.js and TypeScript
+
+<br>
+
+<img src="https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge" alt="Made with love" />
+
+<br><br>
+
+**[⭐ Star this repository](https://github.com/your-username/useless-cv)** if you found it helpful!
+
+<br>
+
+---
+
+*© 2025 Useless CV. All rights reserved.*
+
+</div>
