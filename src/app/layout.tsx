@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
 
+import { CssBaseline } from '@mui/material';
+
 import './globals.css';
 import { SessionProvider } from 'next-auth/react';
 
@@ -14,8 +16,9 @@ export const metadata: Metadata = {
         apple: '/apple-touch-icon.png'
     },
     verification: {
-        google: 'th9cbxlrOlqqGX9lvhY_UJpp24-0rD485_zic0sN4_w'
+        google: 'lzOJyxyPgl5b1VMB1GfBw4jkDL3jfNNNBmRpew5YGZA'
     },
+
     openGraph: {
         title: 'Professional CV Builder by Evgen',
         description: 'Create and manage your professional CV with ease',
@@ -38,6 +41,8 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
         <html suppressHydrationWarning lang='en' data-scroll-behavior='smooth'>
             <body>
+                {/* Normalize CSS  */}
+                {/* <CssBaseline /> */}
                 <SessionProvider>{children}</SessionProvider>
             </body>
         </html>

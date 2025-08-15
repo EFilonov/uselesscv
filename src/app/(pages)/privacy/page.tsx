@@ -79,7 +79,8 @@ export default function PrivacyPolicy() {
                 <p>
                     For any questions about this Privacy Policy, please contact:
                     <br />
-                    <strong>Email:</strong> lharper@gmail.com (for demonstration purposes only)
+                    <strong>Email:</strong> uselesscvmail@gmail.com, evgeniyfilonov@gmail.com (for demonstration
+                    purposes only)
                 </p>
             </main>
         </>

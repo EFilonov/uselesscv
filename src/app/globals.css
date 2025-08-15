@@ -27,14 +27,15 @@ html body h1 {
     overflow-x: hidden; /* Добавить */
 }
 
-body {
+html,
+body,
+.aplication {
     margin: 0 auto;
     display: block;
     background: var(--foreground);
     min-width: 320px;
-    min-height: 100vh;
-    min-height: 100dvh;
-    /* height: 800px; */
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
     font-family: 'HelveticaNeue', Arial, sans-serif;
 
     overscroll-behavior-y: none;

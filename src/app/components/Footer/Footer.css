@@ -6,79 +6,88 @@
     height: 60px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 1fr 1fr;
     align-items: center;
     justify-items: center;
-    z-index: 1000;
 }
 
-.footer span {
-    display: block;
-}
-
-.footer span a {
-    display: block;
-}
-
-.footer .footerDetails,
-.footer .footerPhone,
-.footer .footerEmail {
-    margin-top: 10px;
-    text-align: center;
-    color: var(--secondary);
-    font-size: 13px;
-    line-height: 28px;
-    text-decoration: none;
-    color: var(--footer-text-color);
-    justify-self: center;
-}
-
-.footer .footerText {
-    margin: 0;
-    width: 75%;
-    justify-self: center;
-    color: var(--secondary);
-    font-size: var(--small);
+.footerText {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    justify-items: space-between;
+    grid-template-columns: auto auto auto;
     align-items: center;
+    justify-items: center;
+    gap: 40px;
+    color: var(--footer-text-color);
 }
-.footerSeparator {
-    display: inline-block;
-}
+
 .privacyTerms {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    width: 340px;
-    justify-items: space-around;
-    justify-self: center;
-    margin: 0 auto;
-    padding-bottom: 10px;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-items: center;
+    gap: 25px;
 }
-.privacyTerms a {
-    color: #838282;
-    font-size: 10px;
-    /* line-height: 10px; */
+
+.footerDetails,
+.footerContact,
+.footerPhone,
+.footerEmail,
+.footerTerms,
+.footerPrivacy {
+    color: var(--footer-text-color);
     text-decoration: none;
-    align-self: center;
+    font-size: 14px;
 }
 .footerTerms,
 .footerPrivacy {
-    display: block;
-    /* align-self: flex-end; */
-    justify-self: center;
+    color: rgb(116, 115, 115);
 }
 
-@media (max-width: 1024) {
-    .footer .footerText {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
+.footerPhone:hover,
+.footerEmail:hover,
+.footerTerms:hover,
+.footerPrivacy:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .footer {
+        height: auto;
+        padding: 10px;
+        gap: 10px;
+    }
+    .footerDetails {
+        display: none;
     }
 
-    .footer .footerLocation,
-    .footer .footerDetails {
-        display: none;
+    .footerText {
+        gap: 5px;
+        font-size: 12px;
+    }
+
+    .privacyTerms {
+        grid-template-columns: auto auto;
+        gap: 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footerText {
+        gap: 3px;
+    }
+
+    .privacyTerms {
+        gap: 5px;
+    }
+
+    .footerDetails,
+    .footerContact,
+    .footerPhone,
+    .footerEmail,
+    .footerTerms,
+    .footerPrivacy {
+        font-size: 10px;
     }
 }

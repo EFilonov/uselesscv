@@ -56,7 +56,8 @@ export default function TermsOfUse() {
                 <p>
                     For any questions regarding these Terms of Use, please contact:
                     <br />
-                    <strong>Email:</strong> lharper@gmail.com (for demonstration purposes only)
+                    <strong>Email:</strong> uselesscvmail@gmail.com, evgeniyfilonov@gmail.com (for demonstration
+                    purposes only)
                 </p>
             </main>
         </>
