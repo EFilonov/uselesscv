@@ -1,0 +1,12 @@
+.card {
+    margin-top: 24px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    background: transparent var(--white);
+    padding: 20px;
+}
+
+.lightBlue {
+    background: var(--light-blue);
+}

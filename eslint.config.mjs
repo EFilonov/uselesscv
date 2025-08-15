@@ -1,18 +1,80 @@
-import js from "@eslint/js";
-import globals from "globals";
-import pluginReact from "eslint-plugin-react";
-import json from "@eslint/json";
-import markdown from "@eslint/markdown";
-import css from "@eslint/css";
-import { defineConfig } from "eslint/config";
+import pluginJs from '@eslint/js';
+import nextPlugin from '@next/eslint-plugin-next';
+import prettierPlugin from 'eslint-plugin-prettier'; // ← добавить
+import importPlugin from 'eslint-plugin-import';
+import pluginPromise from 'eslint-plugin-promise';
+import pluginReact from 'eslint-plugin-react';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
-export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,jsx}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: {...globals.browser, ...globals.node} } },
-  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
+export default [
+  {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
+
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  importPlugin.flatConfigs.recommended,
+  pluginPromise.configs['flat/recommended'],
   pluginReact.configs.flat.recommended,
-  { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
-  { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
-  { files: ["**/*.json5"], plugins: { json }, language: "json/json5", extends: ["json/recommended"] },
-  { files: ["**/*.md"], plugins: { markdown }, language: "markdown/commonmark", extends: ["markdown/recommended"] },
-  { files: ["**/*.css"], plugins: { css }, language: "css/css", extends: ["css/recommended"] },
-]);
+  pluginReact.configs.flat['jsx-runtime'],
+  
+  // Временно закомментируйте эту строку
+  // eslintConfigPrettier,
+
+  {
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    rules: {
+      // Принудительно включить правило ПОСЛЕ prettier
+      'semi': ['warn', 'always'],
+
+      // React rules
+      'react/react-in-jsx-scope': 'off',
+      'react-hooks/exhaustive-deps': 'off',
+      'react/display-name': 'off',
+      'react/prop-types': 'off',
+
+      // TS rules
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+
+      // Import rules
+      'import/no-unresolved': 'off',
+      'import/no-named-as-default': 'off',
+      'newline-before-return': 'off',
+    },
+  },
+
+  // Next.js правила
+  {
+    plugins: {
+      '@next/next': nextPlugin,
+    },
+    rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+      '@next/next/no-img-element': 'off',
+    },
+  },
+
+  {
+    ignores: ['.next/*'],
+  },
+];

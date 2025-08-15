@@ -1,0 +1,69 @@
+.formWrapper {
+    display: grid;
+    align-self: center;
+    justify-self: center;
+    max-width: 400px;
+    min-height: 100vh;
+}
+
+.loginForm {
+    align-self: center;
+    justify-self: center;
+}
+
+.githubBtn {
+    margin-top: 20px;
+}
+.loginTitle {
+    margin-top: 0;
+}
+
+h4 {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.MuiFormLabel-root.Mui-error.Mui-focused {
+    color: red;
+}
+
+.MuiInput-underline:before,
+.MuiInput-underline:after {
+    border-bottom-color: var(--primary);
+}
+.forgotPassword {
+    margin-top: 10px;
+    color: var(--primary);
+    text-decoration: none;
+    display: grid;
+}
+
+.register {
+    margin-top: 10px;
+}
+
+.forgotLink {
+    color: var(--primary);
+    text-decoration: none;
+    justify-self: flex-end;
+    font-size: 0.9rem;
+}
+.forgotLink:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.registerLink {
+    color: var(--primary);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    background-color: transparent !important;
+    color: inherit !important;
+    transition: background-color 9999s ease-in-out 0s;
+}

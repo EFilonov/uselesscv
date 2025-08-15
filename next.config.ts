@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+
 import initializeBundleAnalyzer from '@next/bundle-analyzer';
 
 const withBundleAnalyzer = initializeBundleAnalyzer({
@@ -11,14 +12,18 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'lh3.googleusercontent.com',
+                hostname: 'lh3.googleusercontent.com'
             },
             {
                 protocol: 'https',
-                hostname: 'googleusercontent.com',
+                hostname: 'googleusercontent.com'
             },
-        ],
-    },
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com'
+            }
+        ]
+    }
 };
 
 export default withBundleAnalyzer(nextConfig);

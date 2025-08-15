@@ -1,15 +1,9 @@
-// import HomePage from '@/app/(delete-this-and-modify-page.tsx)/HomePage';
-import {    Main} from "./components/Main/Main";
+'use client';
 
-/**
- * The main page component that renders the HomePage component.
- *
- * @returns {JSX.Element} The rendered HomePage component.
- */
-const Page = () => {
-    return (
-        <Main/>
-    )
-};
+import { Main } from './components/Main/Main';
+import { useStore } from './store/zustandStore';
 
-export default Page
+export default function Page() {
+    const isLoading = useStore((state) => state.isLoading);
+    return <Main />;
+}
