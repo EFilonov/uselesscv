@@ -1,6 +1,12 @@
 # *
 User-agent: *
 Allow: /
+Allow: /auth/signin
+Allow: /auth/signup
+Disallow: /auth/reset-password
+Disallow: /auth/forgot-password
+Disallow: /profile
+Disallow: /api/
 
 # Host
 Host: https://uselesscv.vercel.app
