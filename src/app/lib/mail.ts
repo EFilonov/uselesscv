@@ -9,7 +9,8 @@ const OAuth2 = google.auth.OAuth2;
 const oauth2Client = new OAuth2(
     process.env.AUTH_GOOGLE_ID!,
     process.env.AUTH_GOOGLE_SECRET!,
-    'http://localhost:3000' //
+
+    `${process.env.NEXT_PUBLIC_URL}/api/oauth2callback` // ← Добавить полный путь
 );
 
 oauth2Client.setCredentials({
@@ -48,7 +49,7 @@ export async function sendPasswordResetEmail(to: string, token: string) {
                     <div style="max-width: 480px; margin: auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 32px;">
                         <h2 style="color: #222; margin-top: 0;">Reset your password</h2>
                         <p style="font-size: 16px; color: #444;">
-                            We received a request to reset your password for your Useless-cv account.<br>
+                            We received a request to reset your password for your CV Builder account.<br>
                             Click the button below to set a new password:
                         </p>
                         <a href="${resetUrl}" style="
@@ -69,7 +70,7 @@ export async function sendPasswordResetEmail(to: string, token: string) {
                         </p>
                         <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;">
                         <p style="font-size: 12px; color: #bbb;">
-                            &copy; ${new Date().getFullYear()} Useless-cv. All rights reserved.
+                            &copy; ${new Date().getFullYear()} CV Builder. All rights reserved.
                         </p>
                     </div>
                 </div>
@@ -80,13 +81,13 @@ export async function sendPasswordResetEmail(to: string, token: string) {
 
         return result;
     } catch (error: any) {
-        console.error('❌ Email error details:');
+        console.error('Email error details:');
         console.error('- Message:', error.message);
         console.error('- Code:', error.code);
         console.error('- Response:', error.response);
 
         if (error.code === 'EAUTH') {
-            console.error('🚨 OAuth2 Authentication failed');
+            console.error(' OAuth2 Authentication failed');
             console.error('- EMAIL_FROM must match Google account used for refresh token');
             console.error('- Redirect URI mismatch');
         }

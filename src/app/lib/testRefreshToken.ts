@@ -1,77 +1,87 @@
 // src/app/lib/testRefreshToken.ts
-import { config } from 'dotenv';
+import * as dotenv from 'dotenv';
 import { google } from 'googleapis';
-import path from 'path';
+import * as nodemailer from 'nodemailer';
 
-// Load environment variables
-config({ path: path.resolve(process.cwd(), '.env.local') });
+dotenv.config({ path: '.env.local' });
 
-const OAuth2 = google.auth.OAuth2;
+async function testGmailSendScope() {
+    console.log('🧪 Testing Gmail send scope with refresh token...');
 
-async function testRefreshToken() {
-    console.log('🧪 Testing refresh token...');
-
-    // Check environment variables
-    console.log('📋 Environment variables check:');
-    console.log('- AUTH_GOOGLE_ID:', process.env.AUTH_GOOGLE_ID ? 'Set' : 'Missing');
-    console.log('- AUTH_GOOGLE_SECRET:', process.env.AUTH_GOOGLE_SECRET ? 'Set' : 'Missing');
-    console.log('- MAIL_REFRESH_TOKEN:', process.env.MAIL_REFRESH_TOKEN ? 'Set' : 'Missing');
-    console.log('- EMAIL_FROM:', process.env.EMAIL_FROM);
-
-    if (!process.env.AUTH_GOOGLE_ID || !process.env.AUTH_GOOGLE_SECRET || !process.env.MAIL_REFRESH_TOKEN) {
-        console.error('❌ Missing required environment variables');
-        return false;
-    }
-
-    const oauth2Client = new OAuth2(
-        process.env.AUTH_GOOGLE_ID,
-        process.env.AUTH_GOOGLE_SECRET,
-        'http://localhost:3000'
+    const oauth2Client = new google.auth.OAuth2(
+        process.env.AUTH_GOOGLE_ID!,
+        process.env.AUTH_GOOGLE_SECRET!,
+        'http://localhost:3000/api/oauth2callback'
     );
 
-    console.log('🔑 Setting credentials...');
     oauth2Client.setCredentials({
-        refresh_token: process.env.MAIL_REFRESH_TOKEN
+        refresh_token: process.env.MAIL_REFRESH_TOKEN!
     });
 
     try {
-        console.log('🔄 Attempting to get access token...');
+        console.log('🔑 Getting access token...');
         const accessTokenResponse = await oauth2Client.getAccessToken();
 
-        console.log('✅ Success! Token details:');
-        console.log('- Access token:', accessTokenResponse.token ? 'Received' : 'Missing');
-        console.log('- Status:', accessTokenResponse.res?.status);
-        console.log('- Token length:', accessTokenResponse.token?.length);
+        if (!accessTokenResponse.token) {
+            throw new Error('No access token received');
+        }
 
-        return true;
+        console.log('✅ Access token received successfully');
+
+        // Тестируем SMTP соединение
+        console.log('📬 Testing SMTP with OAuth2...');
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                type: 'OAuth2',
+                user: process.env.EMAIL_FROM!,
+                clientId: process.env.AUTH_GOOGLE_ID!,
+                clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+                refreshToken: process.env.MAIL_REFRESH_TOKEN!,
+                accessToken: accessTokenResponse.token
+            }
+        });
+
+        // Проверяем соединение
+        await transporter.verify();
+        console.log('✅ SMTP connection verified');
+
+        // Отправляем тестовое письмо
+        console.log('📮 Sending test email...');
+        const testResult = await transporter.sendMail({
+            from: `"Test OAuth2" <${process.env.EMAIL_FROM}>`,
+            to: process.env.EMAIL_FROM,
+            subject: 'Test Email - OAuth2 Gmail Send Scope',
+            text: 'This email was sent using OAuth2 with gmail.send scope only.',
+            html: `
+                <h2>✅ OAuth2 Test Successful!</h2>
+                <p>This email was sent using:</p>
+                <ul>
+                    <li>OAuth2 authentication</li>
+                    <li>gmail.send scope only</li>
+                    <li>Refresh token: ${process.env.MAIL_REFRESH_TOKEN?.substring(0, 20)}...</li>
+                </ul>
+                <p>Time: ${new Date().toISOString()}</p>
+            `
+        });
+
+        console.log('🎉 Test email sent successfully!');
+        console.log('📬 Message ID:', testResult.messageId);
+        console.log('📧 From:', testResult.envelope.from);
+        console.log('📧 To:', testResult.envelope.to);
     } catch (error: any) {
-        console.error('❌ Refresh token test failed:');
-        console.error('Error message:', error.message);
-        console.error('Error code:', error.code);
-        console.error('Error status:', error.status);
+        console.error('❌ Error details:');
+        console.error('- Message:', error.message);
+        console.error('- Code:', error.code);
+        console.error('- Response:', error.response);
 
-        if (error.message.includes('invalid_grant')) {
-            console.error('🚨 Refresh token is invalid or expired');
-            console.error('Solutions:');
-            console.error('1. Generate new refresh token using getRefreshToken.ts');
-            console.error('2. Check OAuth consent screen configuration');
-            console.error('3. Verify authorized redirect URIs');
+        if (error.code === 'EAUTH' || error.message.includes('unauthorized_client')) {
+            console.error('🚨 OAuth2 ISSUE: Refresh token invalid or wrong scope');
+            console.error('🔧 Solution: Generate new refresh token with gmail.send scope');
         }
-
-        if (error.message.includes('No refresh token')) {
-            console.error('🚨 Refresh token not found');
-            console.error('Check MAIL_REFRESH_TOKEN in .env.local');
-        }
-
-        return false;
     }
 }
 
-// Run if file is called directly
-if (require.main === module) {
-    testRefreshToken();
-}
-
-export { testRefreshToken };
+testGmailSendScope();
 
 // npx tsx src/app/lib/testRefreshToken.ts

@@ -2,37 +2,53 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { google } from 'googleapis';
 
-export async function GET(req: NextRequest) {
-    const url = new URL(req.url);
-    const code = url.searchParams.get('code');
+const oauth2Client = new google.auth.OAuth2(
+    process.env.AUTH_GOOGLE_ID!,
+    process.env.AUTH_GOOGLE_SECRET!,
+    'http://localhost:3000/api/oauth2callback'
+);
 
-    if (!code) {
-        return NextResponse.json({ error: 'No code provided' }, { status: 400 });
+export async function GET(request: NextRequest) {
+    const { searchParams } = new URL(request.url);
+    const code = searchParams.get('code');
+    const error = searchParams.get('error');
+
+    if (error) {
+        return NextResponse.json({ error: `Authorization failed: ${error}` }, { status: 400 });
     }
 
-    const oauth2Client = new google.auth.OAuth2(
-        process.env.AUTH_GOOGLE_ID!,
-        process.env.AUTH_GOOGLE_SECRET!,
-        `${process.env.NEXT_PUBLIC_URL}/api/oauth2callback`
-    );
+    if (!code) {
+        return NextResponse.json({ error: 'No authorization code received' }, { status: 400 });
+    }
 
     try {
-        const { tokens } = await oauth2Client.getToken(code);
-        oauth2Client.setCredentials(tokens);
+        console.log('🔄 Exchanging code for tokens...');
 
-        return new NextResponse(
-            `<html><body>
-                <h2>Authorization successful</h2>
-                <p>Refresh token: ${tokens.refresh_token}</p>
-                <p>Save this token as MAIL_REFRESH_TOKEN environment variable</p>
-                <p>You can close this window</p>
-            </body></html>`,
-            {
-                headers: { 'Content-Type': 'text/html' }
-            }
-        );
+        const { tokens } = await oauth2Client.getToken(code);
+
+        console.log('✅ Success! New tokens received:');
+        console.log('🎟️ Access Token:', tokens.access_token ? 'Received' : 'Not received');
+        console.log('🔄 Refresh Token:', tokens.refresh_token ? 'Received' : 'Not received');
+
+        if (tokens.refresh_token) {
+            console.log('\n📝 Add this to your .env.local:');
+            console.log(`MAIL_REFRESH_TOKEN=${tokens.refresh_token}`);
+        }
+
+        return NextResponse.json({
+            message: 'Authorization successful!',
+            hasRefreshToken: !!tokens.refresh_token,
+            refreshToken: tokens.refresh_token,
+            accessToken: tokens.access_token ? 'Received' : 'Not received'
+        });
     } catch (error: any) {
-        console.error('Authorization error:', error);
-        return NextResponse.json({ error: 'Failed to get tokens', details: error.message }, { status: 500 });
+        console.error('❌ Token exchange failed:', error.message);
+        return NextResponse.json(
+            {
+                error: 'Failed to exchange code for tokens',
+                details: error.message
+            },
+            { status: 500 }
+        );
     }
 }
