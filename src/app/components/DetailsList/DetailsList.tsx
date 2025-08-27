@@ -11,7 +11,7 @@ export const DetailsList: React.FC = () => {
 
     return (
         <div className='detailsList'>
-            <HwithLine line={false}>ADDRESS</HwithLine>
+            <HwithLine line={false}>LOCATION</HwithLine>
             <div className='regularText'>{data?.address}</div>
             <HwithLine line={false}>PHONE</HwithLine>
             <a href={data?.phoneFull} className='regularText' type='tel'>
@@ -21,8 +21,8 @@ export const DetailsList: React.FC = () => {
             <a href={data?.emailFull} className='regularText'>
                 {data?.emailShort}
             </a>
-            <HwithLine line={false}>NATIONALITY</HwithLine>
-            <div className='regularText'>{data?.nationality}</div>
+            {/* <HwithLine line={false}>NATIONALITY</HwithLine>
+            <div className='regularText'>{data?.nationality}</div> */}
         </div>
     );
 };
