@@ -3,38 +3,36 @@
 
 import { useEffect, useState } from 'react';
 
-import { useSearchParams } from 'next/navigation';
-
-// src/app/(pages)/oauth-test/page.tsx
-
 // src/app/(pages)/oauth-test/page.tsx
 
 export default function OAuthTestPage() {
-    const searchParams = useSearchParams();
     const [result, setResult] = useState('');
 
     useEffect(() => {
-        const success = searchParams.get('success');
-        const error = searchParams.get('error');
-        const scope = searchParams.get('scope');
-        const hasRefresh = searchParams.get('has_refresh');
-        const hasGmailSend = searchParams.get('has_gmail_send');
+        // Получаем параметры напрямую из URL
+        if (typeof window !== 'undefined') {
+            const urlParams = new URLSearchParams(window.location.search);
+            const success = urlParams.get('success');
+            const error = urlParams.get('error');
+            const scope = urlParams.get('scope');
+            const hasRefresh = urlParams.get('has_refresh');
+            const hasGmailSend = urlParams.get('has_gmail_send');
 
-        if (success) {
-            setResult(
-                `✅ OAuth Consent SUCCESS!\n\n` +
-                    `📧 Gmail Send Scope: ${hasGmailSend === 'true' ? 'GRANTED ✅' : 'NOT GRANTED ❌'}\n` +
-                    `🔄 Refresh Token: ${hasRefresh === 'true' ? 'Received ✅' : 'Not received ❌'}\n` +
-                    `🔑 Full Scope: ${scope || 'Unknown'}\n\n` +
-                    `🎯 PERFECT! Google verification team can see that gmail.send scope was successfully granted.`
-            );
-        } else if (error) {
-            setResult(`❌ OAuth Error: ${error}`);
+            if (success) {
+                setResult(
+                    `✅ OAuth Consent SUCCESS!\n\n` +
+                        `📧 Gmail Send Scope: ${hasGmailSend === 'true' ? 'GRANTED ✅' : 'NOT GRANTED ❌'}\n` +
+                        `🔄 Refresh Token: ${hasRefresh === 'true' ? 'Received ✅' : 'Not received ❌'}\n` +
+                        `🔑 Full Scope: ${scope || 'Unknown'}\n\n` +
+                        `🎯 PERFECT! Google verification team can see that gmail.send scope was successfully granted.`
+                );
+            } else if (error) {
+                setResult(`❌ OAuth Error: ${error}`);
+            }
         }
-    }, [searchParams]);
+    }, []);
 
     const handleDirectOAuth = () => {
-        // Используем прямую ссылку на продакшен
         const url =
             'https://accounts.google.com/oauth/authorize?' +
             'client_id=33174385992-t5iou6h1o2sku6hkdg2fo1rp07bsopje.apps.googleusercontent.com&' +
