@@ -90,3 +90,5 @@ export const testSMTPConnection = async () => {
         return { success: false, error: error };
     }
 };
+
+//npx tsx src/app/lib/testSMTP.ts
